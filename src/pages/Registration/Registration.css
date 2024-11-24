@@ -1,0 +1,10 @@
+.EmptySpace{
+  width: 1188px;
+  height: 630px;
+  background-color: white;
+  border-radius: 20px;
+  padding: 30px 50px 30px 50px;
+  display: flex;
+  justify-content: center; /* Центрирование по горизонтали */
+  align-items: center;
+}

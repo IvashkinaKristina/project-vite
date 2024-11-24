@@ -1,0 +1,49 @@
+.RegistrForm {
+  width: 450px;
+  height: 500px;
+  background-color: #463783;
+  border-radius: 20px;
+  padding: 20px;
+}
+.RegistrForm > div {
+  padding: 20px;
+}
+.RegIn {
+  font-family: Inter;
+  font-size: 39px;
+  font-weight: 600;
+  text-align: center;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+}
+.ContainerReg {
+  text-align: left;
+  margin-top: 20%;
+}
+.NameOfSpace {
+  font-family: Inter;
+  font-size: 18px;
+  font-weight: 500;
+}
+.SpaceToEnter {
+  width: 400px;
+  height: 40px;
+  border-radius: 15px;
+  opacity: 0px;
+  background-color: white;
+  color: black;
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 10%;
+}
+.RegButton {
+  width: 161px;
+  height: 45px;
+  border-radius: 20px;
+  background-color: #FFFFFF;
+  color: black;
+  font-family: Inter;
+  font-size: 18px;
+  font-weight: 700;
+  text-align: center;
+}
