@@ -12,9 +12,9 @@ export default function RegistrationForm(){
                     <br />
                     <span className="NameOfSpace">Пароль</span>
                     <br />
-                    <input type="text" className="SpaceToEnter"/>
+                    <input type="password" className="SpaceToEnter"/>
                 </div>
-                <button className="RegButton">ВХОД</button>
+                <button className="RegButton" >ВХОД</button>
             </div>
         </div>
     )
