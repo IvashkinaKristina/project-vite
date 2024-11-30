@@ -1,6 +1,6 @@
 import './MainForm.css';
 
-export default function MainForm(){
+export default function MainForm({ active, onChange }){
     return(
         <div className='main-form'>
         <div className="header">
@@ -20,7 +20,7 @@ export default function MainForm(){
             <h3>Безлимитный доступ к лекциям, статьям и методическим материалам</h3>
         </div>
       </div>
-      <button className="auth-button">АВТОРИЗАЦИЯ</button>    
+      <button className="auth-button" onClick={() => onChange("ShowReg")}>АВТОРИЗАЦИЯ</button>    
 </div>
 )
 }
