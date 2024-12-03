@@ -1,0 +1,21 @@
+.Container-VideoSpace {
+  display: flex;
+  background-color: #463783;
+  height: 735px;
+  width: 876px;
+  justify-content: center;
+  padding: 20px;
+  border-radius: 20px;
+}
+.VideoSpace {
+  background-color: #d9d9d9;
+  width: 778px;
+  height: 551px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#notice {
+  color: black;
+}
