@@ -1,0 +1,25 @@
+.ContainerForAll {
+  display: flex;
+  background-color: white;
+}
+
+.ContentLectures {
+  flex: 1;
+  padding: 20px;
+  margin: 0 auto; 
+  min-height: 100vh;
+}
+
+.Content-button-Lectures {
+  background-color: #463783;
+  color: white;
+  border: none;
+  padding: 15px;
+  margin-bottom: 3%;
+  cursor: pointer;
+  width: 70%;
+  height: 10%;
+  border-radius: 20px;
+  font-weight: bold; 
+  font-size: 25px; 
+}
