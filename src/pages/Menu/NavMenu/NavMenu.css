@@ -1,0 +1,26 @@
+.side-nav {
+    background-color:  #463783;
+    width: 150px;
+    height: 100vh;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.nav-button {
+    background-color: white;
+    border: none;
+    padding: 20px 20px;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.nav-button-ex{
+      background-color: white;
+    border: none;
+    padding: 20px 20px;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+}

@@ -1,0 +1,20 @@
+.side-nav {
+    background-color: #4A235A;
+    width: 150px;
+    height: 100vh;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.nav-button {
+    background-color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Плавное изменение цвета */
+}
+

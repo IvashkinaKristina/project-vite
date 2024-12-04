@@ -2,7 +2,8 @@ import './MainForm.css';
 
 export default function MainForm({ active, onChange }){
     return(
-        <div className='main-form'>
+        
+    <div className='main-form'>
         <div className="header">
             <h1>ПЛАТФОРМА ИНТЕРАКТИВНЫХ ЛЕКЦИЙ ПО ДИСЦИПЛИНЕ</h1>
         </div>
