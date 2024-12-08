@@ -13,8 +13,9 @@ export default function App() {
   return (
     <>
       <main>
-        <MainForm/>
-        
+        {/* <MainForm/> */}
+        {/* <Lectures/> */}
+        <VideoSpace/>
       </main>
     </>
   );

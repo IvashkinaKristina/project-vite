@@ -16,6 +16,8 @@
     border-radius: 10px;
     font-weight: bold;
     cursor: pointer;
+    color: black;
+
 }
 .nav-button-ex{
     background-color: white;
@@ -25,5 +27,6 @@
     font-weight: bold;
     cursor: pointer;
     margin-top: 470px;
+    color: black;
     
 }
