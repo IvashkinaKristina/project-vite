@@ -15,7 +15,7 @@ export default function NavMenu({ active, onChange }){
                 Лекции
             </button>
             <button 
-                className={`nav-button ${active === 'exit' ? 'active' : ''}`}
+                className={`nav-button-ex ${active === 'exit' ? 'active' : ''}`}
                 onClick={() => onChange('exit')}
             >
                 Выход
