@@ -3,7 +3,7 @@ import Menu from "../../GeneralModules/Menu/Menu";
 
 export default function VideoSpace() {
   return (
-    <div className="containerForAll">
+    <div className="ContainerForAll">
         <Menu />
         <div className="Container-VideoSpace">
           <div className="VideoSpace">

@@ -1,5 +1,5 @@
 .Container-VideoSpace {
-  display: flex;
+  display: inline-block;
   background-color: #463783;
   height: 735px;
   width: 876px;
