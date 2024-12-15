@@ -2,7 +2,7 @@ import MainForm from "./pages/Main/Baze.jsx";
 import "./App.css";
 import VideoSpace from "./GeneralModules/VideoSpace/VideoSpace.jsx";
 import Lectures from "./pages/Lectures/Lectures.jsx";
-
+import PersonalAccount from "./pages/PersonalAccount/PersonalAccount.jsx"
 
 
 // Я бы тебе посоветовал переделать размерность из px в % для основных отоброжаемых контейнеров, так проще потом будет делать адаптивную верстку
@@ -15,7 +15,8 @@ export default function App() {
       <main>
         {/* <MainForm/> */}
         {/* <Lectures/> */}
-        <VideoSpace/>
+        {/* <VideoSpace/> */}
+        <PersonalAccount/>
       </main>
     </>
   );

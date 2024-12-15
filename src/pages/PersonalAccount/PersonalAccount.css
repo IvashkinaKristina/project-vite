@@ -1,0 +1,82 @@
+.container-all {
+  display: flex;
+  height: 100%; /* Занимает всю высоту экрана */
+  width: 190vh;
+  background-color: white;
+  overflow: hidden;
+}
+
+.user-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 20px;
+  margin-right: 20px;
+  box-sizing: border-box;
+  
+  
+}
+
+.user-photo {
+    width: 320px;
+    height: 320px;
+    object-fit: cover;
+    margin-bottom: 10px;
+    align-self: flex-start;
+    border-radius: 10%;
+    margin-left: 40px; /* Добавили отступ слева */
+  } 
+
+  .button-account {
+    background-color: #e0e0e0;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    align-self: flex-start;
+    margin-left: 130px; /* Добавили отступ слева */
+}
+
+.user-info-details {
+  display: flex;
+  flex-direction: column; /* Располагаем элементы в колонку */
+  align-items: flex-end; /* Выравниваем содержимое details по левому краю */
+  flex: 1; /* Занимает оставшееся место справа от фото */
+  text-align: right;
+}
+
+.FIO,
+.Group {
+    display: flex;
+    margin-bottom: 10px;
+    width: 60%;
+
+    
+}
+
+/* .container-all {
+  width: 160%;
+  height: 100%;
+  display: flex;
+  background-color: white;
+
+}
+
+/* .personal-cabinet {
+  flex: 1;
+  padding: 20px;
+  margin: 0 auto; 
+  min-height: 100vh;
+  } 
+  
+  .user-info {
+    width: 160%;
+  height: 100%;
+    padding: 20px;
+    margin: 0 auto; 
+    
+  }
+  
+  
