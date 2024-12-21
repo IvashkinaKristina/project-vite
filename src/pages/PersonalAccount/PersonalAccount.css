@@ -41,19 +41,19 @@
 
 .user-info-details {
   display: flex;
-  flex-direction: column; /* Располагаем элементы в колонку */
-  align-items: flex-end; /* Выравниваем содержимое details по левому краю */
-  flex: 1; /* Занимает оставшееся место справа от фото */
-  text-align: right;
+  height: 170px; 
+  width: 200px;
+  flex-direction: column; 
+  align-items: flex-end; 
+  flex: 1; 
+  
 }
 
 .FIO,
 .Group {
     display: flex;
     margin-bottom: 10px;
-    width: 60%;
 
-    
 }
 
 /* .container-all {

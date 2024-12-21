@@ -1,5 +1,4 @@
 import './MainForm.css';
-//sdfg
 export default function MainForm({ active, onChange }){
     return(
     <div>

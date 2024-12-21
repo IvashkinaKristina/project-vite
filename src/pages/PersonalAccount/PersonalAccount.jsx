@@ -1,7 +1,7 @@
 import "./PersonalAccount.css";
 import Menu from "../../GeneralModules/Menu/Menu";
 
-export default function Lectures() {
+export default function PersonalAccount() {
     return (
       <div class="container-all">
         <Menu/>
