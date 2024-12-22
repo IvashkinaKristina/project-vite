@@ -1,23 +1,17 @@
-import MainForm from "./pages/Main/Baze.jsx";
+import React from 'react';
+import ReactDOM from 'react-dom/client';
 import "./App.css";
-import VideoSpace from "./GeneralModules/VideoSpace/VideoSpace.jsx";
-import Lectures from "./pages/Lectures/Lectures.jsx";
-import PersonalAccount from "./pages/PersonalAccount/PersonalAccount.jsx"
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Menu from "./pages/Menu/Menu.jsx";
+import Main from "./pages/Main/Baze.jsx";
 
-
-// Я бы тебе посоветовал переделать размерность из px в % для основных отоброжаемых контейнеров, так проще потом будет делать адаптивную верстку
-// я потом свою размерность под твою подгоню, также измени название стилей элементов на более четкие, чтобы не путаться потом в них
-// у меня посмотришь пример.
-//проверка
 export default function App() {
   return (
-    <>
-      <main>
-        {/* <MainForm/> */}
-        {/* <Lectures/> */}
-         <VideoSpace/> 
-        {/*<PersonalAccount/>*/}
-      </main>
-    </>
-  );
+    <BrowserRouter>
+            <Routes>
+                <Route path="/" element={<Main />} />
+                <Route path="/menu" element={<Menu />} />
+            </Routes>
+        </BrowserRouter>
+    );
 }

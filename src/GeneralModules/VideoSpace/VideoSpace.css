@@ -1,21 +1,27 @@
 .Container-VideoSpace {
-  display: inline-block;
-  background-color: #463783;
-  height: 735px;
-  width: 876px;
-  justify-content: center;
-  padding: 20px;
-  border-radius: 20px;
-}
-.VideoSpace {
-  background-color: #d9d9d9;
-  width: 778px;
-  height: 350px;
-  border-radius: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-wrap: wrap;
+  background-color: #463783;
+  height: 40rem;
+  width: 54rem;
+  justify-content: center;
+  padding: 1.25rem;
+  border-radius: 1.25rem;
+}
+.VideoSpace {
+  width: 48.625rem;
+  height: 22rem;
+  
 }
 #notice {
+  color: white;
+  font-size: 1.5rem;
+}
+.ButtonBack{
+  background-color: white;
   color: black;
+  font-weight: 600;
+  font-size: 1rem;
 }

@@ -1,19 +1,22 @@
 .side-nav {
     background-color:  #463783;
-    width: 150px;
+    width: 9.375rem;
     height: 100vh;
-    padding: 20px;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
     display: flex;
     flex-direction: column;
-    gap: 20px;
-    
+    gap: 1.25rem;
+    position: fixed;
+
 }
 
 .nav-button {
     background-color: white;
     border: none;
-    padding: 20px 20px;
-    border-radius: 10px;
+    margin-top: 1.4rem;
+    padding: 1.25rem 1.25rem;
+    border-radius: 0.625rem;
     font-weight: bold;
     cursor: pointer;
     color: black;
@@ -22,11 +25,12 @@
 .nav-button-ex{
     background-color: white;
     border: none;
-    padding: 20px 20px;
+    padding: 1.25rem 3rem;
     border-radius: 10px;
     font-weight: bold;
     cursor: pointer;
-    margin-top: 470px;
     color: black;
-    
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 1.4rem;
 }

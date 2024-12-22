@@ -1,44 +1,49 @@
-  .header {
-    text-align: center;
-    width: 500px;
+.header {
+  text-align: center;
+  width: 500px;
+}
 
-  }
-  
-  .header h1 {
-    font-size: 26px;
-    font-weight: bold;
-    color:#463783;
-  }
-  
-  .title {
-    margin-bottom: 30px;
-  }
-  
-  .title h2 {
-    font-size: 60px;
-    font-weight: bold;
-    color: black;
-  }
-  
-  .sub-forms {
-    display: flex;
-    gap: 20px;
-    margin-bottom: 30px;
-  }
-  
-  .sub-form {
-    width: 370px;
-    height: 200px;
-    background-color: #463783;
-    border-radius: 20px;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    margin-top: -40px; /* Добавлен отрицательный margin-top */
-    
+.header h1 {
+  font-size: 26px;
+  font-weight: bold;
+  color: #463783;
+}
 
-    
-  }
+.title {
+  margin-bottom: 30px;
+}
+
+.title h2 {
+  font-size: 60px;
+  font-weight: bold;
+  color: black;
+}
+
+.sub-forms {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+.main-form {
+  
+  font-family: sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color:#463783;
+  min-height: 100vh;
+}
+
+.sub-form {
+  width: 370px;
+  height: 200px;
+  background-color: #463783;
+  border-radius: 20px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  margin-top: -40px; /* Добавлен отрицательный margin-top */
+}

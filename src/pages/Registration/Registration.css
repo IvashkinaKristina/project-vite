@@ -1,9 +1,9 @@
 .EmptySpace{
-  width: 1188px;
-  height: 630px;
+  width: 79.375rem;
+  height: 39.375rem;
   background-color: white;
-  border-radius: 20px;
-  padding: 30px 50px 30px 50px;
+  border-radius: 1.25rem;
+  padding: 1.875rem 3.125rem 1.875rem 3.125rem;
   display: flex;
   justify-content: center; /* Центрирование по горизонтали */
   align-items: center;

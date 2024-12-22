@@ -1,28 +1,30 @@
 .ContainerForAll {
-  width: 100%;
-  height: 100%;
   display: flex;
   background-color: white;
+  
 
 }
 
 .ContentLectures {
   flex: 1;
-  padding: 20px;
+  padding: 1.25rem;
   margin: 0 auto; 
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .Content-button-Lectures {
   background-color: #463783;
   color: white;
   border: none;
-  padding: 15px;
+  padding: 1rem;
   margin-bottom: 3%;
   cursor: pointer;
   width: 70%;
   height: 10%;
-  border-radius: 20px;
+  border-radius: 1.25rem;
   font-weight: bold; 
-  font-size: 25px; 
+  font-size: 1.5rem; 
 }

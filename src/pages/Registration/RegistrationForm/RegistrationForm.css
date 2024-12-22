@@ -1,16 +1,19 @@
 .RegistrForm {
-  width: 450px;
-  height: 500px;
+  width: 28.125rem;
+  height: 31.25rem;
   background-color: #463783;
-  border-radius: 20px;
-  padding: 20px;
+  border-radius: 1.25rem;
+  padding: 1.25rem;
 }
 .RegistrForm > div {
-  padding: 20px;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .RegIn {
   font-family: Inter;
-  font-size: 39px;
+  font-size: 2.5rem;
   font-weight: 600;
   text-align: center;
   text-underline-position: from-font;
@@ -22,28 +25,28 @@
 }
 .NameOfSpace {
   font-family: Inter;
-  font-size: 18px;
+  font-size: 1.125rem;
   font-weight: 500;
 }
 .SpaceToEnter {
-  width: 400px;
-  height: 40px;
-  border-radius: 15px;
-  opacity: 0px;
+  width: 25rem;
+  height: 2.5rem;
+  border-radius: 1rem;
+  opacity: 0rem;
   background-color: white;
   color: black;
-  font-size: 18px;
+  font-size: 1.125rem;
   font-weight: 500;
   margin-bottom: 10%;
 }
 .RegButton {
-  width: 161px;
-  height: 45px;
-  border-radius: 20px;
+  width: 10rem;
+  height: 2.875rem;
+  border-radius: 1.25rem;
   background-color: #FFFFFF;
   color: black;
   font-family: Inter;
-  font-size: 18px;
+  font-size: 1.2rem;
   font-weight: 700;
   text-align: center;
   cursor: pointer;

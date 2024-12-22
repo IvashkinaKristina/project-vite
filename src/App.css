@@ -1,13 +1,7 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-}
 
 .logo {
   height: 6em;
-  padding: 1.5em;
+  padding: 1.5rem;
   will-change: filter;
   transition: filter 300ms;
 }
@@ -34,80 +28,70 @@
 }
 
 .card {
-  padding: 2em;
+  padding: 2rem;
 }
 
 .read-the-docs {
   color: #888;
 }
 
-.main-form {
-  width: 1188px;
-  height: 630px;
-  background-color: white;
-  border-radius: 20px;
-  padding: 30px 50px 30px 50px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
 
 
 .header {
   text-align: center;
-  width: 500px;
+  width: 31.25rem;
   
 }
 
 .header h1 {
-  font-size: 26px;
+  font-size: 1.625rem;
   font-weight: bold;
   color:#463783;
 }
 
 .title {
-  margin-bottom: 30px;
+  margin-bottom: 1.875rem;
 }
 
 .title h2 {
-  font-size: 60px;
+  font-size: 3.75rem;
   font-weight: bold;
   color: black;
 }
 
 .sub-forms {
   display: flex;
-  gap: 20px;
-  margin-bottom: 30px;
+  gap: 1.25rem;
+  margin-bottom: 1.875rem;
 }
 
 .sub-form {
-  width: 370px;
-  height: 200px;
+  width: 23.125rem;
+  height: 12.5rem;
   background-color: #463783;
-  border-radius: 20px;
-  padding: 20px;
+  border-radius: 1.25rem;
+  padding: 1.25rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   color: white;
-  margin-top: -40px; /* Добавлен отрицательный margin-top */
+  margin-top: -2.5rem; /* Добавлен отрицательный margin-top */
   
 }
 
 .sub-form h3 {
   margin: 0;
-  font-size: 22px;
+  font-size: 1.375rem;
   font-style: italic;
 }
 
 .auth-button {
   background-color: #463783;
   color: white;
-  padding: 15px 60px;
+  padding: 1rem 3.75rem;
   border: none;
-  border-radius: 20px;
+  border-radius: 1.25rem;
   cursor: pointer;
-  font-size: 15px;
+  font-size: 1rem;
 }
