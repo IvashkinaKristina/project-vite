@@ -4,7 +4,7 @@
   justify-content: center;
   flex-wrap: wrap;
   background-color: #463783;
-  height: 40rem;
+  height: 50rem;
   width: 54rem;
   justify-content: center;
   padding: 1.25rem;
@@ -19,9 +19,40 @@
   color: white;
   font-size: 1.5rem;
 }
+
+
+#test {
+  /* Задаем блочное отображение, чтобы вопросы шли один под другим */
+  display: block;
+  margin-top:2rem;
+}
+
+.question {
+  margin-bottom: 1rem; /* Отступ между вопросами */
+}
+
+
+.question-text {
+  color: white; /* Белый цвет текста вопроса */
+  margin-bottom: 1rem; /* Отступ снизу */
+}
+
+.options-wrapper {
+  display: flex;
+  flex-direction: column; /* Размещаем лейблы в столбец */
+}
+
+.option-label {
+  color: white; /* Белый цвет текста вариантов ответа */
+  display: block; /* Каждый лейбл на новой строке */
+}
+
+
+
 .ButtonBack{
   background-color: white;
   color: black;
   font-weight: 600;
   font-size: 1rem;
+  
 }
