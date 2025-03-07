@@ -7,7 +7,6 @@
 }
 
 .user-info {
-  flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -21,7 +20,6 @@
   height: 20rem;
   object-fit: cover;
   margin-bottom: 0.625rem;
-  align-self: flex-start;
   border-radius: 10%;
   margin-left: 2.5rem; /* Добавили отступ слева */
 }
@@ -41,13 +39,25 @@
   display: flex;
   flex-direction: column;
   margin-top: 1.25rem;
-  width: 250px; /* Ограничьте ширину, чтобы текст не растягивался слишком сильно */
+}
+
+.info-background {
+  background-color: #e0e0e0; /* Овальный серый фон */
+  border-radius: 1.25rem;
+  padding: 0.2rem 1rem; /* Внутренние отступы */
+  display: inline-flex; /* Чтобы элементы растягивались по содержимому */
+  justify-content: center;
+  align-items: center;
+  width: fit-content; /* Ширина под текст */
+  min-width: 12.5rem; /* Минимальная ширина (при необходимости) */
+  text-align: center;
 }
 
 .info-row {
   display: flex;
   justify-content: space-between; /* Распределяем пространство между label и значением */
   margin-bottom: 0.625rem;
+  margin-top: 1rem;
 }
 
 .info-label {

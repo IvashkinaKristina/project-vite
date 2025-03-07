@@ -46,18 +46,30 @@ export default function PersonalAccount() {
           style={{ display: "none" }} // Скрываем input file
           onChange={handleAvatarChange} // Вызываем handleAvatarChange при выборе файла
           accept="image/*" // Принимаем только изображения
-        />
+        /> 
+        </div>
         <div className="user-info-details">
-  <div className="info-row">
-    <span className="info-label">ФИО:</span>
-    <span>Иванов Иван Иванович</span>
+          <div className="info-row">
+            <span className="info-label">ФИО:</span>
+            <span className="info-background">Иванов Иван Иванович</span>
+          </div>
+          <div className="info-row">
+            <span className="info-label">Группа:</span>
+            <span className="info-background">АСОиУб-23-1</span>
+          </div>
+        </div>
+        <div class="progress-container">
+  <div class="progress-item">
+    <span class="progress-title"></span>
   </div>
-  <div className="info-row">
-    <span className="info-label">Группа:</span>
-    <span>АСОиУб-23-1</span>
+  <div class="progress-item">
+    <span class="progress-title"></span>
+  </div>
+  <div class="progress-item">
+    <span class="progress-title"></span>
   </div>
 </div>
-    </div>
-    </div>
+
+      </div>
   );
 }

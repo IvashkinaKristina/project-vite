@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Lectures from "../../GeneralModules/Lectures/Lectures.jsx";
 import { useNavigate } from "react-router-dom";
 import PersonalAccount from "../../GeneralModules/PersonalAccount/PersonalAccount.jsx";
+import Create from "../../GeneralModules/Create/Create.jsx";
 
 export default function Menu() {
   const [activeTab, setActiveTab] = useState("lectures");
@@ -27,6 +28,7 @@ export default function Menu() {
       <div className="MainMenu">
         {activeTab === "lectures" && <Lectures />}
         {activeTab === "cabinet" && <PersonalAccount />}
+        {activeTab === "create" && <Create />}
       </div>
     </div>
   );
