@@ -16,6 +16,12 @@ export default function NavMenu({ activeTab, onTabChange, onLogout }) {
             >
                 Лекции
             </button>
+            <button
+                className={`nav-button ${activeTab === "create" ? "active" : ""}`}
+                onClick={() => onTabChange("create")}
+            >
+                Создать лекцию
+            </button>
             <button className="nav-button-ex" onClick={onLogout}>
                 Выход
             </button>

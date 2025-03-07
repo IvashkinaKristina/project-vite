@@ -39,36 +39,19 @@
 
 .user-info-details {
   display: flex;
-  height: 10.625rem;
-  width: 12.5rem;
   flex-direction: column;
-  align-items: flex-end;
-  flex: 1;
+  margin-top: 1.25rem;
+  width: 250px; /* Ограничьте ширину, чтобы текст не растягивался слишком сильно */
 }
 
-.FIO,
-.Group {
+.info-row {
   display: flex;
+  justify-content: space-between; /* Распределяем пространство между label и значением */
   margin-bottom: 0.625rem;
 }
 
-/* .container-all {
-  width: 160%;
-  height: 100%;
-  display: flex;
-  background-color: white;
+.info-label {
+  font-weight: bold; /* Сделаем надписи полужирными */
+  margin-right: 0.5rem; /* Небольшой отступ между label и значением */
 }
 
-.personal-cabinet {
-  flex: 1;
-  padding: 1.25rem;
-  margin: 0 auto;
-  min-height: 100vh;
-}
-
-.user-info {
-  width: 160%;
-  height: 100%;
-  padding: 1.25rem;
-  margin: 0 auto;
-} */
