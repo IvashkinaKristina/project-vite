@@ -11,7 +11,6 @@ export default function VideoSpace({ onBack }) {
           <span id="notice">ЛЕКЦИЯ №1 «БИНОМ НЬЮТОНА»</span>
         </div>
         <div id="test">
-          {/* Вопрос 1 */}
           <div className="question">
             <p className="question-text">Что такое бином Ньютона?</p>
             <div className="options-wrapper">
@@ -30,7 +29,6 @@ export default function VideoSpace({ onBack }) {
             </div>
           </div>
 
-          {/* Вопрос 2 */}
           <div className="question">
             <p className="question-text">Чему равен коэффициент при x² в разложении (x + 1)⁵ ?</p>
             <div className="options-wrapper">
@@ -48,7 +46,6 @@ export default function VideoSpace({ onBack }) {
               </label>
             </div>
           </div>
-          {/* Вопрос 3 */}
           <div className="question">
             <p className="question-text">Сумма биномиальных коэффициентов в разложении (a + b)⁴ равна:</p>
             <div className="options-wrapper">
