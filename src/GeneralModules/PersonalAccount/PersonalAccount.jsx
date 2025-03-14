@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
 import "./PersonalAccount.css";
 
-const defaultAvatar = "https://glamaziya23kransk.w.pw/sususlugi.ru/netcat_files/g/168/16636871865_44_top.com_p_serii_fon_tik_tok_foto_50.jpg";
+// Путь к аватарке по умолчанию из папки public
+const defaultAvatar = "/images/avatar.jpg"; // Изменили ссылку на локальную картинку
 
 export default function PersonalAccount() {
   const [avatarUrl, setAvatarUrl] = useState(() => {
     // Получаем аватар из Local Storage при инициализации
     const storedAvatar = localStorage.getItem("avatar");
-    return storedAvatar || defaultAvatar;
+    return storedAvatar || defaultAvatar; // Если нет в Local Storage - берем дефолтную
   });
 
   useEffect(() => {
@@ -33,7 +34,7 @@ export default function PersonalAccount() {
     <div className="container-all">
       <div className="user-info">
         <img
-          src={avatarUrl}
+          src={avatarUrl} // Отображаем avatarUrl
           alt="Аватар пользователя"
           className="user-photo"
         />
@@ -46,30 +47,29 @@ export default function PersonalAccount() {
           style={{ display: "none" }} // Скрываем input file
           onChange={handleAvatarChange} // Вызываем handleAvatarChange при выборе файла
           accept="image/*" // Принимаем только изображения
-        /> 
-        </div>
-        <div className="user-info-details">
-          <div className="info-row">
-            <span className="info-label">ФИО:</span>
-            <span className="info-background">Иванов Иван Иванович</span>
-          </div>
-          <div className="info-row">
-            <span className="info-label">Группа:</span>
-            <span className="info-background">АСОиУб-23-1</span>
-          </div>
-        </div>
-        <div class="progress-container">
-  <div class="progress-item">
-    <span class="progress-title"></span>
-  </div>
-  <div class="progress-item">
-    <span class="progress-title"></span>
-  </div>
-  <div class="progress-item">
-    <span class="progress-title"></span>
-  </div>
-</div>
-
+        />
       </div>
+      <div className="user-info-details">
+        <div className="info-row">
+          <span className="info-label">ФИО:</span>
+          <span className="info-background">Иванов Иван Иванович</span>
+        </div>
+        <div className="info-row">
+          <span className="info-label">Группа:</span>
+          <span className="info-background">АСОиУб-23-1</span>
+        </div>
+      </div>
+      <div className="progress-container">
+        <div className="progress-item">
+          <span className="progress-title"></span>
+        </div>
+        <div className="progress-item">
+          <span className="progress-title"></span>
+        </div>
+        <div className="progress-item">
+          <span className="progress-title"></span>
+        </div>
+      </div>
+    </div>
   );
 }
