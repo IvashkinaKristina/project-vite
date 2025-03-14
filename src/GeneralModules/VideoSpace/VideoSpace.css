@@ -1,58 +1,75 @@
+MainBody {
+  display: flex;
+  flex-direction: column; /* Располагаем элементы друг под другом */
+  align-items: center;  /* Центрируем по горизонтали */
+  padding: 20px;  /* Добавляем отступы вокруг контента */
+}
+
 .Container-VideoSpace {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  background-color: #463783;
-  height: 50rem;
-  width: 54rem;
-  justify-content: center;
-  padding: 1.25rem;
-  border-radius: 1.25rem;
+display: flex;
+align-items: center;
+justify-content: center;
+flex-direction: column; /* Изменили на column, чтобы элементы шли друг под другом */
+background-color: #463783;
+height: auto; /* Убираем фиксированную высоту, чтобы контент помещался */
+width: 54rem;
+padding: 1.25rem;
+border-radius: 1.25rem;
+margin-bottom: 20px; /* Отступ между контейнером видео и кнопкой */
 }
+
+.Container-VideoSpace > * {
+margin-bottom: 1rem; /* Отступы между элементами внутри container-videoSpace */
+}
+
+
 .VideoSpace {
-  width: 48.625rem;
-  height: 22rem;
-  
+width: 100%; /* Занимает всю ширину родителя */
+max-width: 48.625rem; /* Ограничиваем ширину */
+height: auto;  /* Высота подстраивается под видео */
 }
+
+
 #notice {
+color: white;
+font-size: 1.5rem;
+text-align: center; /* Центрируем текст */
+}
+
+
+.test-container { /* Новый класс для контейнера теста */
+  width: 100%;
+  max-width: 48.625rem;
   color: white;
-  font-size: 1.5rem;
 }
 
 
-#test {
-  /* Задаем блочное отображение, чтобы вопросы шли один под другим */
-  display: block;
-  margin-top:2rem;
+.test-results {
+color: white;
+font-size: 1.2rem;
+margin-top: 1rem;
 }
-
-.question {
-  margin-bottom: 1rem; /* Отступ между вопросами */
-}
-
-
-.question-text {
-  color: white; /* Белый цвет текста вопроса */
-  margin-bottom: 1rem; /* Отступ снизу */
-}
-
-.options-wrapper {
-  display: flex;
-  flex-direction: column; /* Размещаем лейблы в столбец */
-}
-
-.option-label {
-  color: white; /* Белый цвет текста вариантов ответа */
-  display: block; /* Каждый лейбл на новой строке */
-}
-
-
 
 .ButtonBack{
-  background-color: white;
-  color: black;
-  font-weight: 600;
-  font-size: 1rem;
-  
+background-color: white;
+color: black;
+font-weight: 600;
+font-size: 1rem;
+padding: 10px 20px;  /* Добавляем отступы для кнопки */
+border: none;        /* Убираем границы */
+border-radius: 5px; /* Закругляем углы */
+cursor: pointer;     /* Курсор-рука при наведении */
+margin-top: 20px;    /* Отступ сверху */
+}
+
+.test-container button {
+background-color: white;
+color: black;
+font-weight: 600;
+font-size: 1rem;
+padding: 10px 20px;
+border: none;
+border-radius: 5px;
+cursor: pointer;
+margin-top: 1rem;
 }
