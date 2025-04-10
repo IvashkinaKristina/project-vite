@@ -1,3 +1,6 @@
+h2{
+  font-size: 2rem;
+}
 .create-container {
   flex: 1;
   padding: 1.25rem;
@@ -23,12 +26,20 @@
 }
 .Upload {
   margin: 2rem;
+  width: 100%; /* Занимает всю ширину родителя */
+  max-width: 50rem; /* Ограничиваем ширину */
+  height: auto;  /* Высота подстраивается под видео */
+  padding: 0.6rem; 
+  border: none;
+  border-radius: 1.25rem; 
+  background-color: #D9D9D9;
+  cursor: pointer;
 }
 .InputCreate {
-  width: 48rem;
+  width: 50rem;
   height: 2rem;
   border-radius: 20px;
-  margin: 1rem;
+  margin: 0.5rem;
   background-color: aliceblue;
 }
 .UploadButton {
@@ -41,14 +52,14 @@
   display: flex;
   justify-content: space-around;
   width: 100%;
-  margin-bottom: 1.25rem; /* 20px / 16px = 1.25rem */
+  margin-bottom: 1.25rem; 
 }
 
 .icon-button {
   background-color: #fff;
   border: none;
-  width: 4rem; /* 40px / 16px = 2.5rem */
-  height: 3rem; /* 40px / 16px = 2.5rem */
+  width: 4rem; 
+  height: 3rem; 
   display: flex;
   justify-content: center;
   align-items: center;
@@ -57,6 +68,6 @@
 }
 
 .icon-button img {
-  max-width: 60%;
-  max-height: 60%;
+  max-width: 2.5rem;
+  max-height: 2.5rem;
 }

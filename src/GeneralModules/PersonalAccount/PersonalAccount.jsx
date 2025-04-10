@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./PersonalAccount.css";
 
 // Путь к аватарке по умолчанию из папки public
-const defaultAvatar = "/images/avatar.jpg"; // Изменили ссылку на локальную картинку
+const defaultAvatar = "/images/avatar.jpg"; 
 
 export default function PersonalAccount() {
   const [avatarUrl, setAvatarUrl] = useState(() => {

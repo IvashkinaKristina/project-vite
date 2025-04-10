@@ -60,19 +60,19 @@ export default function Lectures() {
 
 <div className="button-container">
           <button className="icon-button">
-            <img src="" alt="Upload" />
+            <img src="/images/Upload.png" alt="Upload" />
           </button>
           <button className="icon-button">
-            <img src="" alt="Cut" />
+            <img src="/images/Cut.png" alt="Cut" />
           </button>
           <button className="icon-button">
-            +
+          <img src="/images/Plus.png" alt="Plus" />
           </button>
           <button className="icon-button">
-            <img src="" alt="Save" />
+            <img src="/images/Save.png" alt="Save" />
           </button>
           <button className="icon-button">
-            <img src="" alt="Settings" />
+            <img src="/images/Settings.png" alt="Settings" />
           </button>
         </div>
 
