@@ -63,13 +63,13 @@ export default function VideoSpace({ onBack }) {
             {testQuestions.map((question, index) => (
               <div key={index} className="question-container">
                 <p>{question.question}</p>
-                <div className="options-wrapper"> {/* Добавил обертку для стилей */}
+                <div className="options-wrapper"> {/*  для стилей */}
                   {question.options.map((option, optionIndex) => (
                     <div key={optionIndex} className="option-container">
                       <input
                         type="radio"
                         id={`question${index}-option${optionIndex}`} // Уникальные id
-                        name={`question${index}`} // Группируем по вопросам
+                        name={`question${index}`} // Группировка по вопросам
                         value={optionIndex}
                         checked={testAnswers[index] === optionIndex}
                         onChange={() => handleAnswerSelect(index, optionIndex)}
@@ -103,11 +103,8 @@ export default function VideoSpace({ onBack }) {
             </p>
           </div>
         )}
-        <button className="ButtonBack" onClick={onBack}>
-        Вернуться к списку лекций
-      </button>
+        <button className="ButtonBack" onClick={onBack}>Вернуться к списку лекций</button>
       </div>
-      
-    </div>
+        </div>
   );
 }

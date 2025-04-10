@@ -37,7 +37,7 @@ const handleUpload = async () => {
 export default function Lectures() {
   return (
     <div className="create-container">
-      <h2 className="Heading">ДОБАВИТЬ ЛЕКЦИЮ</h2>
+      <h2 className="Heading">РЕДАКТОР ЛЕКЦИЙ</h2>
       <div className="SpaceForCreate">
         <input
           className="Upload"
@@ -57,6 +57,25 @@ export default function Lectures() {
           placeholder="Добавить краткое описание лекции"
           id="2"
         />
+
+<div className="button-container">
+          <button className="icon-button">
+            <img src="" alt="Upload" />
+          </button>
+          <button className="icon-button">
+            <img src="" alt="Cut" />
+          </button>
+          <button className="icon-button">
+            +
+          </button>
+          <button className="icon-button">
+            <img src="" alt="Save" />
+          </button>
+          <button className="icon-button">
+            <img src="" alt="Settings" />
+          </button>
+        </div>
+
         <button className="UploadButton" onClick={handleUpload}>
           Сохранить
         </button>
