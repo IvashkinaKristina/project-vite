@@ -13,6 +13,13 @@ from myapp inport mymodel
 ....
 
 
-Дальше вводим: '''alebmic revision --autogenerate -m "комментарий"'''
+Дальше вводим: '''alembic revision --autogenerate -m "комментарий"'''
 Будет создана миграция 
 Дальше вводим: '''alembic upgrade heads'''
+
+
+Запуск приложения: '''uvicorn main:app --reload'''
+
+alembic revision --autogenerate -m "app pass column"
+
+http://127.0.0.1:8000/docs

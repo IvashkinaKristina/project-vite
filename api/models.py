@@ -36,7 +36,7 @@ class UserCreate(BaseModel):
     lastname: str
     email: EmailStr
     group: str
-
+    password: str
 
 
     @field_validator("name")
@@ -56,5 +56,16 @@ class UserCreate(BaseModel):
         if not Letter_Match_Pattern.match(value):
             raise HTTPException(status_code=422, detail="Lastname should contains only letters")
         return value
+    
+class Token(BaseModel):
+    access_token:str
+    token_type: str
+    
+
+class DeleteUserResponce(BaseModel):
+    deleted_user_id: uuid.UUID
+
+class UpdatedUserResponce(BaseModel):
+    updated_user_id: uuid.UUID
     
 # Модуль хранит модели которые относятся к обработке ЗАПРОСА(pydantic)

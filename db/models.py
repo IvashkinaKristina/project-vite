@@ -23,5 +23,6 @@ class User(Base):
     email = Column(String, nullable=False, unique=True)
     group = Column(String, nullable=False)
     is_active = Column(Boolean(), default=True) #Активен ли пользователь(удален или нет)
+    hashed_password = Column(String, nullable=False)
 
     # Модель для работы с БД (SQLAlchemy)
