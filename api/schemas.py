@@ -1,8 +1,9 @@
 import re
 import uuid
+from typing import Optional
 
 from fastapi import HTTPException
-from pydantic import BaseModel, EmailStr, field_validator
+from pydantic import BaseModel, EmailStr, field_validator, constr
 
 
 ####################
@@ -65,7 +66,14 @@ class Token(BaseModel):
 class DeleteUserResponce(BaseModel):
     deleted_user_id: uuid.UUID
 
+
 class UpdatedUserResponce(BaseModel):
     updated_user_id: uuid.UUID
-    
+
+
+class UpdateUserRequest(BaseModel):
+    name: Optional[constr(min_length=1)]
+    surname: Optional[constr(min_length=1)]
+    email: Optional[EmailStr]
+
 # Модуль хранит модели которые относятся к обработке ЗАПРОСА(pydantic)
