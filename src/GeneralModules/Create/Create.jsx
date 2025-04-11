@@ -1,6 +1,8 @@
 import "./Create.css";
 import React, { useState } from "react";
 
+
+
 const FileUploader = () => {
   const [file, setFile] = useState(null);
 };
@@ -39,6 +41,7 @@ export default function Lectures() {
     <div className="create-container">
       <h2 className="Heading">РЕДАКТОР ЛЕКЦИЙ</h2>
       <div className="SpaceForCreate">
+        
         <input
           className="Upload"
           type="file"
