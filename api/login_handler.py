@@ -7,8 +7,7 @@ from fastapi import HTTPException
 from fastapi import status
 from fastapi.security import OAuth2PasswordBearer
 from fastapi.security import OAuth2PasswordRequestForm
-from jose import jwt
-from jose import JWTError
+
 from sqlalchemy.ext.asyncio import AsyncSession
  
 import settings
@@ -18,26 +17,11 @@ from db.models import User
 from db.session import get_db
 from hashing import Hasher
 from security import create_access_token
+from api.actions.auth import authenticate_user
+
 
 login_router = APIRouter()
 
-
-async def _get_user_by_email_for_auth(email: str, db: AsyncSession):
-    async with db as session:
-        async with session.begin():
-            user_dal = UserDAL(session)
-            return await user_dal.get_user_by_email(
-                email = email,
-            )
-
-
-async def authenticate_user(email: str, password: str, db: AsyncSession) -> Union[User, None]:
-    user = await _get_user_by_email_for_auth(email=email, db=db)
-    if user is None:
-        return 
-    if not Hasher.verify_password(password, user.hashed_password):
-        return 
-    return user
 
 
 @login_router.post("/token", response_model=Token)
