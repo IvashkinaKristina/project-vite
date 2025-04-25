@@ -13,7 +13,7 @@ from myapp inport mymodel
 ....
 
 
-Дальше вводим: '''alembic revision --autogenerate -m "комментарий"'''
+Дальше вводим: ''''''
 Будет создана миграция 
 Дальше вводим: '''alembic upgrade heads'''
 
@@ -23,3 +23,4 @@ from myapp inport mymodel
 alembic revision --autogenerate -m "app pass column"
 
 http://127.0.0.1:8000/docs
+alembic revision --autogenerate -m "add roles"

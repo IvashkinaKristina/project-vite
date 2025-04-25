@@ -2,7 +2,7 @@ import uuid
 
 
 from sqlalchemy import Column, String, Boolean
-from sqlalchemy.dialects.postgresql import UUID
+from sqlalchemy.dialects.postgresql import UUID, ARRAY
 from sqlalchemy.orm import declarative_base
 
 
@@ -24,5 +24,6 @@ class User(Base):
     group = Column(String, nullable=False)
     is_active = Column(Boolean(), default=True) #Активен ли пользователь(удален или нет)
     hashed_password = Column(String, nullable=False)
+    roles = Column(ARRAY(String), nullable=False)
 
     # Модель для работы с БД (SQLAlchemy)

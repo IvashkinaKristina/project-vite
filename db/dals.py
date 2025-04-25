@@ -1,6 +1,6 @@
 from typing import Union
 from uuid import UUID
-
+from enum import Enum
 
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import update, and_, select
@@ -16,6 +16,12 @@ from db.models import User
 ##########################################
 
 
+class PortalRole(str, Enum):
+    ROLE_PORTAL_USER = "ROLE_PORTAL_USER"
+    ROLE_PORTAL_ADMIN = "ROLE_PORTAL_ADMIN"
+    ROLE_PORTAL_SUPERADMIN = "ROLE_PORTAL_SUPERADMIN"
+
+
 class UserDAL:
     """Создание/удаление/взаимодействие с пользователем"""
     def __init__(self, db_session: AsyncSession):
@@ -23,7 +29,7 @@ class UserDAL:
 
 
     async def create_user(
-            self, name:str, surname:str, lastname:str, email:str, group:str, hashed_password: str
+            self, name:str, surname:str, lastname:str, email:str, group:str, hashed_password: str, roles: list[PortalRole]
             ) -> User:
         new_user = User(
             name = name,
@@ -31,7 +37,8 @@ class UserDAL:
             lastname = lastname,
             email = email,
             group = group,
-            hashed_password=hashed_password
+            hashed_password=hashed_password,
+            roles = roles
             )
         self.db_session.add(new_user)
         await self.db_session.flush()
