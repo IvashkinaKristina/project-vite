@@ -93,7 +93,9 @@ margin-top: 1rem;
   border-radius: 8px;
   width: 400px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  color: white;
 }
+
 
 .question-content input {
   width: 100%;

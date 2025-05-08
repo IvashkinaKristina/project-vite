@@ -103,12 +103,27 @@ const VideoSpace = ({ onBack }) => {
         {showQuestion && (
           <div className="question-modal">
             <div className="question-content">
-              <p>Вопрос: Какой ответ в этой задаче?</p>
+              <p>Вопрос: Сколько членов в разложении (x + y)^3?</p>
               <input
                 type="text"
                 value={userAnswer}
                 onChange={(e) => setUserAnswer(e.target.value)}
-                onKeyDown={handleKeyPress} // Вот это критически важно!
+                onKeyDown={(e) => { // Вот это критически важно!
+                if (e.key === 'Enter') {
+                  if (userAnswer.trim() === "4") {
+                    setShowQuestion(false);
+                    videoRef.current.play()
+                    .catch(e => console.error("Ошибка воспроизведения:", e));
+              setUserAnswer("");
+                  } else{
+                    setUserAnswer("");
+                    e.target.placeholder = "Неверно! Попробуйте снова.";
+                    setTimeout(() => {
+                    e.target.placeholder = "Введите ваш ответ."
+                    }, 2000);
+                }
+          }
+        }}
                 placeholder="Введите ваш ответ..."
                 autoFocus
                 className="answer-input"
