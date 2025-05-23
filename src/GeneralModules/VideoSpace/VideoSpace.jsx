@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import "./VideoSpace.css";
 
-const videoFile = "/videos/ЛЕКЦИЯ.mp4";
+const videoFile = "/videos/Лекция-Бинома-Ньютона.mp4";
 
 const testQuestions = [
   {
