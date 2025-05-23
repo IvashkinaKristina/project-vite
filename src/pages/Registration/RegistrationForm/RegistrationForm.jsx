@@ -1,12 +1,22 @@
 import "./RegistrationForm.css";
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { login } from "/src/services/api";
 
 export default function RegistrationForm() {
   const navigate = useNavigate();
-  const handleLogin = () => {
-    // Здесь можно добавить логику проверки данных для входа, а пока просто перенаправляем
-    navigate("/menu");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    try {
+      await login(email, password);
+      navigate("/menu");
+    } catch (err) {
+      setError("Неверный email или пароль");
+    }
   };
 
   return (
@@ -14,13 +24,24 @@ export default function RegistrationForm() {
       <div>
         <span className="RegIn">АВТОРИЗАЦИЯ</span>
         <div className="ContainerReg">
-          <span className="NameOfSpace">Логин</span>
+          {error && <div className="error-message">{error}</div>}
+          <span className="NameOfSpace">Email</span>
           <br />
-          <input type="text" className="SpaceToEnter" />
+          <input 
+            type="text" 
+            className="SpaceToEnter" 
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
           <br />
           <span className="NameOfSpace">Пароль</span>
           <br />
-          <input type="password" className="SpaceToEnter" />
+          <input 
+            type="password" 
+            className="SpaceToEnter" 
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
         </div>
         <button className="RegButton" onClick={handleLogin}>
           ВХОД

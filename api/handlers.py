@@ -121,4 +121,20 @@ async def update_user_by_id(
         raise HTTPException(status_code=503, detail=f"Database error: {err}")
     return UpdatedUserResponce(updated_user_id=updated_user_id)
 
+
+@user_router.get("/me", response_model=ShowUser)
+async def get_current_user_info(
+    current_user: User = Depends(get_current_user_from_token),
+) -> ShowUser:
+    return ShowUser(
+        user_id=current_user.user_id,
+        name=current_user.name,
+        surname=current_user.surname,
+        email=current_user.email,
+        is_active=current_user.is_active,
+    )
+
+
+
+
 # Модуль handlers обрабатывает входящий запрос от пользователя
