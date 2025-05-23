@@ -4,6 +4,8 @@
   background-color: #463783;
   border-radius: 1.25rem;
   padding: 1.25rem;
+  color:white;
+
 }
 .RegistrForm > div {
   padding: 1.25rem;
@@ -27,6 +29,7 @@
   font-family: Inter;
   font-size: 1.125rem;
   font-weight: 500;
+
 }
 .SpaceToEnter {
   width: 25rem;

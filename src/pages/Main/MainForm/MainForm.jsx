@@ -27,6 +27,9 @@ export default function MainForm({ active, onChange }) {
         <button className="auth-button" onClick={() => onChange("ShowReg")}>
           АВТОРИЗАЦИЯ
         </button>
+        <button className="reg-button">
+          РЕГИСТРАЦИЯ
+        </button>
       </div>
     </div>
   );

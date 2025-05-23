@@ -46,6 +46,7 @@ export default function RegistrationForm() {
         <button className="RegButton" onClick={handleLogin}>
           ВХОД
         </button>
+        
       </div>
     </div>
   );
