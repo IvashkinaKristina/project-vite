@@ -1,7 +1,25 @@
-// src/services/api.js
 import axios from 'axios';
 
-const API_URL = 'http://127.0.0.1:8000'; // Базовый URL бэкенда
+const API_URL = 'http://localhost:8000';
+
+export const register = async (userData) => {
+  try {
+    const response = await axios.post(`${API_URL}/user/`, userData);
+    return response.data;
+  } catch (error) {
+    if (error.response) {
+      // Обрабатываем ошибки валидации от бэкенда
+      if (error.response.status === 422) {
+        throw { 
+          message: "Ошибки валидации",
+          errors: error.response.data.detail
+        };
+      }
+      throw { message: error.response.data.detail || "Ошибка сервера" };
+    }
+    throw { message: "Не удалось подключиться к серверу" };
+  }
+};
 
 export const login = async (email, password) => {
   const formData = new FormData();
@@ -9,16 +27,11 @@ export const login = async (email, password) => {
   formData.append('password', password);
   
   try {
-    const response = await axios.post(`${API_URL}/login/token`, formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    });
+    const response = await axios.post(`${API_URL}/login/token`, formData);
     localStorage.setItem('token', response.data.access_token);
     return response.data;
   } catch (error) {
-    console.error('Login error:', error);
-    throw error;
+    throw { message: error.response?.data?.detail || "Ошибка авторизации" };
   }
 };
 
@@ -28,13 +41,11 @@ export const getCurrentUser = async () => {
   
   try {
     const response = await axios.get(`${API_URL}/user/me`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
+      headers: { Authorization: `Bearer ${token}` }
     });
     return response.data;
   } catch (error) {
-    console.error('Get user error:', error);
+    console.error("Ошибка получения пользователя:", error);
     return null;
   }
 };
