@@ -103,14 +103,20 @@ const VideoSpace = ({ onBack }) => {
         {showQuestion && (
           <div className="question-modal">
             <div className="question-content">
-              <p>Вопрос: Сколько членов в разложении (x + y)^3?</p>
+              <div className="question-with-image">
+  <p>Вопрос: Вычислите определитель матрицы</p>
+  <img 
+    src="/images/Матрица.jpg" 
+    className="matrix-image"
+  />
+</div>
               <input
                 type="text"
                 value={userAnswer}
                 onChange={(e) => setUserAnswer(e.target.value)}
                 onKeyDown={(e) => { // Вот это критически важно!
                 if (e.key === 'Enter') {
-                  if (userAnswer.trim() === "4") {
+                  if (userAnswer.trim() === "-16") {
                     setShowQuestion(false);
                     videoRef.current.play()
                     .catch(e => console.error("Ошибка воспроизведения:", e));
@@ -119,12 +125,12 @@ const VideoSpace = ({ onBack }) => {
                     setUserAnswer("");
                     e.target.placeholder = "Неверно! Попробуйте снова.";
                     setTimeout(() => {
-                    e.target.placeholder = "Введите ваш ответ."
+                    e.target.placeholder = "Введите ваш ответ"
                     }, 2000);
                 }
           }
         }}
-                placeholder="Введите ваш ответ..."
+                placeholder="Введите ваш ответ"
                 autoFocus
                 className="answer-input"
               />
