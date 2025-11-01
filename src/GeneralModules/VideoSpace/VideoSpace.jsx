@@ -33,6 +33,13 @@ const VideoSpace = ({ onBack }) => {
   const [testAnswers, setTestAnswers] = useState(Array(testQuestions.length).fill(null));
   const [testCompleted, setTestCompleted] = useState(false);
   const [testResults, setTestResults] = useState({ correct: 0, total: testQuestions.length });
+ 
+  //КОД ДЛЯ ВСПЛЫВАЮЩЕЙ ПОДСКАЗКИ 
+  // Состояние для подсчета неверных попыток
+  const [wrongAttempts, setWrongAttempts] = useState(0);
+  // Состояние для отображения/скрытия подсказки
+  const [showHint, setShowHint] = useState(false);
+  //КОНЕЦ КОДА ДЛЯ ВСПЛЫВАЮЩЕЙ ПОДСКАЗКИ
 
   // Обработчик времени видео
   useEffect(() => {
@@ -121,13 +128,29 @@ const VideoSpace = ({ onBack }) => {
                     videoRef.current.play()
                     .catch(e => console.error("Ошибка воспроизведения:", e));
               setUserAnswer("");
+              //КОД ДЛЯ ВСПЛЫВАЮЩЕЙ ПОДСКАЗКИ
+              // Сбрасываем счетчик ошибок и скрываем подсказку при правильном ответе
+                    setWrongAttempts(0);
+                    setShowHint(false);
+              //КОНЕЦ КОДА ДЛЯ ВСПЛЫВАЮЩЕЙ ПОДСКАЗКИ
                   } else{
+              //КОД ДЛЯ ВСПЛЫВАЮЩЕЙ ПОДСКАЗКИ
+              // Увеличиваем счетчик неверных попыток
+                    const attempts = wrongAttempts + 1;
+                    setWrongAttempts(attempts);
+              //КОНЕЦ КОДА ДЛЯ ВСПЛЫВАЮЩЕЙ ПОДСКАЗКИ
                     setUserAnswer("");
                     e.target.placeholder = "Неверно! Попробуйте снова.";
                     setTimeout(() => {
                     e.target.placeholder = "Введите ваш ответ"
                     }, 2000);
-                }
+              //КОД ДЛЯ ВСПЛЫВАЮЩЕЙ ПОДСКАЗКИ
+              // Показываем подсказку после 3 неверных попыток
+                    if (attempts >= 3) {
+                      setShowHint(true);
+                    }
+              //КОНЕЦ КОДА ДЛЯ ВСПЛЫВАЮЩЕЙ ПОДСКАЗКИ
+            }
           }
         }}
                 placeholder="Введите ваш ответ"
@@ -135,6 +158,29 @@ const VideoSpace = ({ onBack }) => {
                 className="answer-input"
               />
               <p className="hint">Нажмите Enter чтобы продолжить</p>
+
+              {/* === КОД ДЛЯ ВСПЛЫВАЮЩЕЙ ПОДСКАЗКИ === */}
+              {/* Отображение всплывающей подсказки */}
+              {showHint && (
+                <div className="hint-cloud">
+                  <div className="cloud-content">
+                    <div className="cloud-header">
+                      <h3>Подсказка</h3>
+                    </div>
+                    <div className="cloud-body">
+                      <p>Для матрицы 2x2: det = a*d - b*c</p>
+                      <p>Где a, b – элементы первой строки</p>
+                      <p>c, d – элементы второй строки</p>
+                    </div>
+                    <div className="cloud-footer">
+                      {/* Кнопка для закрытия подсказки */}
+                      <button className="cloud-button" onClick={() => setShowHint(false)}>Понятно</button>
+                    </div>
+                  </div>
+                  <div className="cloud-arrow"></div>
+                </div>
+              )}
+              {/* === КОНЕЦ КОДА ДЛЯ ВСПЛЫВАЮЩЕЙ ПОДСКАЗКИ === */}
             </div>
           </div>
         )}
