@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import "./VideoSpace.css";
 
-const videoFile = "/videos/Лекция-Бинома-Ньютона.mp4";
+const videoFile = "/videos/Матрицы.mp4";
 
 const testQuestions = [
   {
@@ -50,7 +50,7 @@ const VideoSpace = ({ onBack }) => {
       // 1. Время >= 3:57 (237 сек)
       // 2. Окно ещё не показано (showQuestion = false)
       // 3. Вопрос ещё ни разу не был показан (questionShown = false)
-      if (video.currentTime >= 237 && !showQuestion && !questionShown) {
+      if (video.currentTime >= 8 && !showQuestion && !questionShown) {
         video.pause();
         setShowQuestion(true);
         setQuestionShown(true); // Помечаем вопрос как показанный
