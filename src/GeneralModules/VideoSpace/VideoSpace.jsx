@@ -186,6 +186,7 @@ const VideoSpace = ({ onBack }) => {
         )}
 
         {/* Блок с тестом */}
+        {/*
         <div className="test-container">
           <h2>Тест</h2>
           {testQuestions.map((question, index) => (
@@ -212,8 +213,10 @@ const VideoSpace = ({ onBack }) => {
           ))}
           <button onClick={handleSubmitTest}>Завершить тест</button>
         </div>
+        */}
 
         {/* Результаты теста */}
+        {/*
         {testCompleted && (
           <div className="test-results">
             <p>
@@ -226,6 +229,7 @@ const VideoSpace = ({ onBack }) => {
             </p>
           </div>
         )}
+          */}
 
         <button className="ButtonBack" onClick={onBack}>
           Вернуться к списку лекций
