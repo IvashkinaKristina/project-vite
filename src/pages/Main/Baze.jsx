@@ -3,13 +3,30 @@ import "./Baze.css";
 import Reg from "../Registration/Registration.jsx";
 import SignUp from "../SignUp/SignUpForm.jsx"*/}; // Добавляем импорт
 import Lectures from "../../GeneralModules/Lectures/Lectures.jsx"
+import NavMenu from "../../GeneralModules/NavMenu/NavMenu.jsx"
 import React, { useState } from "react";
 
 export default function Main() {
   {/*const [tab, setTab] = useState(null);*/} // Инициализируем null, чтобы изначально ничего не показывать
+  
+    // Простые функции для меню
+  const handleTabChange = (tab) => {
+    console.log("Переключено на:", tab);
+  };
+
+  const handleLogout = () => {
+    console.log("Выход");
+  };
+
   return (
 
     <div className="main-form">
+      {/* Добавляем навигационное меню */}
+      <NavMenu 
+        activeTab="lectures"
+        onTabChange={handleTabChange}
+        onLogout={handleLogout}
+      />
 {/* Компонент лекций */}
       <Lectures />
 
