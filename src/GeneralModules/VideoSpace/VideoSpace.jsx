@@ -6,22 +6,25 @@ const videoFile = "/videos/Матрицы.mp4";
 // Добавляем конфигурацию вопросов с временными метками
 const videoQuestions = [
   {
-    time: 5, // на 5 секунде
-    question: "Вопрос на 5 секунде: Чему равно 2 + 2?",
-    correctAnswer: "4",
-    image: null
+    time: 5,
+    question: "Вопрос 1: Прямоугольная таблица, образованная из элементов некоторого множества и состоящая из m строк и n столбцов - это (ответ вписывайте с большой буквой)",
+    correctAnswer: "Матрица",
+    image: null,
+    hint: "Вспомните основное определение из начала лекции"
   },
   {
-    time: 8, // существующий вопрос
-    question: "Вопрос: Вычислите определитель матрицы",
-    correctAnswer: "-16",
-    image: "/images/Матрица.jpg"
+    time: 8, 
+    question: "Определите, к какому из изученных видов относится матрица, изображённая ниже (ответ вписывайте с большой буквой)",
+    correctAnswer: "Диагональная",
+    image: "/images/вопрос 2 всплывающего окна.png",
+    hint: "Посмотрите на расположение ненулевых элементов"
   },
   {
     time: 12, // на 12 секунде
-    question: "Вопрос на 12 секунде: Сколько будет 3 × 7?",
-    correctAnswer: "21",
-    image: null
+    question: "Как называется матрица, все элементы которой равны нулю, и как она обозначается? (ответ вписывайте с большой буквой без запятой, только с ПРОБЕЛОМ) ",
+    correctAnswer: "Нулевая О",
+    image: null,
+    hint: "В математике её называют 'абсолютным нулём' — она не меняет другие матрицы при сложении, а её обозначение совпадает с буквой, которая часто символизирует начало координат"
   }
 ];
 
@@ -59,6 +62,8 @@ const VideoSpace = ({ onBack }) => {
   //КОД ДЛЯ ВСПЛЫВАЮЩЕЙ ПОДСКАЗКИ 
   const [wrongAttempts, setWrongAttempts] = useState(0);
   const [showHint, setShowHint] = useState(false);
+  // ДОБАВЛЕНО: состояние для сообщения "Верно!"
+  const [showCorrect, setShowCorrect] = useState(false);
   //КОНЕЦ КОДА ДЛЯ ВСПЛЫВАЮЩЕЙ ПОДСКАЗКИ
 
   // Обработчик времени видео
@@ -77,6 +82,7 @@ const VideoSpace = ({ onBack }) => {
           setUserAnswer("");
           setWrongAttempts(0);
           setShowHint(false);
+          setShowCorrect(false); // ДОБАВЛЕНО: сбрасываем сообщение "Верно!" при новом вопросе
         }
       });
     };
@@ -89,12 +95,16 @@ const VideoSpace = ({ onBack }) => {
     if (e.key === 'Enter' && currentQuestion) {
       if (userAnswer.trim() === currentQuestion.correctAnswer) {
         // Правильный ответ
+        setShowCorrect(true); // ДОБАВЛЕНО: показываем сообщение "Верно!"
+        setTimeout(() => {
         setAnsweredQuestions(prev => [...prev, currentQuestion.time]);
         setCurrentQuestion(null);
         videoRef.current.play().catch(e => console.error("Ошибка воспроизведения:", e));
         setUserAnswer("");
         setWrongAttempts(0);
         setShowHint(false);
+        setShowCorrect(false); // ДОБАВЛЕНО: скрывает сообщение после задержки
+        }, 1000); // ДОБАВЛЕНО: задержка 1 секунда перед закрытием окна
       } else {
         // Неправильный ответ
         const attempts = wrongAttempts + 1;
@@ -163,6 +173,12 @@ const VideoSpace = ({ onBack }) => {
                 autoFocus
                 className="answer-input"
               />
+              {/* ДОБАВЛЕНО: сообщение "Верно!" с CSS классом */}
+              {showCorrect && (
+                <div className="correct-message">
+                  Верно!
+                </div>
+                 )}
               <p className="hint">Нажмите Enter чтобы продолжить</p>
 
               {/* Подсказка */}
@@ -173,9 +189,7 @@ const VideoSpace = ({ onBack }) => {
                       <h3>Подсказка</h3>
                     </div>
                     <div className="cloud-body">
-                      <p>Для матрицы 2x2: det = a*d - b*c</p>
-                      <p>Где a, b – элементы первой строки</p>
-                      <p>c, d – элементы второй строки</p>
+                      <p>{currentQuestion.hint}</p>
                     </div>
                     <div className="cloud-footer">
                       <button className="cloud-button" onClick={() => setShowHint(false)}>Понятно</button>
