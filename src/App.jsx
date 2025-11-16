@@ -5,6 +5,9 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Menu from "./pages/Menu/Menu.jsx";
 import Main from "./pages/Main/Baze.jsx";
 import Registration from "./pages/Registration/Registration.jsx";
+import Lectures from './GeneralModules/Lectures/Lectures.jsx';
+import PersonalAccount from './GeneralModules/PersonalAccount/PersonalAccount.jsx';
+import Create from './GeneralModules/Create/Create.jsx';
 import { getCurrentUser } from './services/api';
 
 function ProtectedRoute({ children }) {
@@ -16,8 +19,23 @@ export default function App() {
   return (
     <BrowserRouter>
       <Routes>
+        {/* ЗАКОММЕНТИРОВАНА: главную страницу с регистрацией и авторизацией */}
+        {/*
         <Route path="/" element={<Main />} />
         <Route path="/registration" element={<Registration />} />
+        */}
+
+       {/*Страница с лекциями старотовая*/}
+        <Route 
+        path="/"
+        element={<Lectures/>} />
+
+        <Route path="/lectures" element={<Lectures />} />
+        <Route path="/personal-account" element={<PersonalAccount/>} />
+        <Route path="/create" element={<Create />} />
+
+
+        {/*
         <Route 
           path="/menu" 
           element={
@@ -26,6 +44,7 @@ export default function App() {
             </ProtectedRoute>
           } 
         />
+        */}
       </Routes>
     </BrowserRouter>
   );
