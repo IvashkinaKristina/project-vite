@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./PersonalAccount.css";
+import NavMenu from "../NavMenu/NavMenu"; // Добавила меню
 
 // Путь к аватарке по умолчанию из папки public
 const defaultAvatar = "/images/avatar.jpg"; 
@@ -31,6 +32,9 @@ export default function PersonalAccount() {
   };
 
   return (
+    <div>
+      
+      <NavMenu />
     <div className="container-all">
       <div className="user-info">
         <img
@@ -70,6 +74,7 @@ export default function PersonalAccount() {
           <span className="progress-title"></span>
         </div>
       </div>
+    </div>
     </div>
   );
 }

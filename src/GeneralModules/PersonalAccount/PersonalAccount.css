@@ -1,7 +1,8 @@
 .container-all {
   display: flex;
   height: 100%; /* Занимает всю высоту экрана */
-  width: 190vh;
+  width: 160vh;
+   margin-left: 10rem; /* Отступ равный ширине нав меню */
   background-color: white;
   overflow: hidden;
 }

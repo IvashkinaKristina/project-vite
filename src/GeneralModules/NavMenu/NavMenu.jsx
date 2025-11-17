@@ -1,13 +1,16 @@
 import "./NavMenu.css";
 import React from "react";
-import { useNavigate, useLocation } from "react-router-dom"; // ДОБАВИТЬ
+import { useNavigate, useLocation } from "react-router-dom"; //добавила
 
 
-export default function NavMenu({ activeTab, onTabChange, onLogout }) {
-      const navigate = useNavigate(); // ДОБАВИТЬ
-  const location = useLocation(); // ДОБАВИТЬ
-
-  // ДОБАВИТЬ: определяем активную вкладку по текущему URL
+/*export default function NavMenu({ activeTab, onTabChange, onLogout }) { */
+  
+// Добавила
+export default function NavMenu() {
+  const navigate = useNavigate();
+  const location = useLocation();
+  
+// Определяем активную вкладку по текущему URL (Добавила 17.11.25)
   const getActiveTab = () => {
     if (location.pathname === "/personal-account") return "cabinet";
     if (location.pathname === "/lectures" || location.pathname === "/") return "lectures";
@@ -15,7 +18,9 @@ export default function NavMenu({ activeTab, onTabChange, onLogout }) {
     return "lectures";
   };
 
-  // ДОБАВИТЬ: функция перехода по страницам
+   const activeTab = getActiveTab();
+
+  // Функция для перехода по страницам
   const handleTabChange = (tab) => {
     switch(tab) {
       case "cabinet":
@@ -33,30 +38,32 @@ export default function NavMenu({ activeTab, onTabChange, onLogout }) {
   };
 
   const handleLogout = () => {
-    console.log("Выход");
-    // логика выхода
+    console.log("Выход из системы");
+    // Добавить логику выхода (пока ее нет)
   };
+
+  //Был код
     return (
         <nav className="side-nav">
             <button
                 className={`nav-button ${activeTab === "cabinet" ? "active" : ""}`}
-                onClick={() => onTabChange("cabinet")}
+                onClick={() => handleTabChange("cabinet")}
             >
                 ЛК
             </button>
             <button
                 className={`nav-button ${activeTab === "lectures" ? "active" : ""}`}
-                onClick={() => onTabChange("lectures")}
+                onClick={() => handleTabChange("lectures")}
             >
                 Лекции
             </button>
             <button
                 className={`nav-button ${activeTab === "create" ? "active" : ""}`}
-                onClick={() => onTabChange("create")}
+                onClick={() => handleTabChange("create")}
             >
                 Редактор лекций
             </button>
-            <button className="nav-button-ex" onClick={onLogout}>
+            <button className="nav-button-ex" onClick={handleLogout}>
                 Выход
             </button>
         </nav>

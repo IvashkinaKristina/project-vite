@@ -1,5 +1,6 @@
 import "./Create.css";
 import React, { useState, useRef } from "react";
+import NavMenu from "../NavMenu/NavMenu"; // Добавила меню
 
 export default function Lectures() {
   const [file, setFile] = useState(null);
@@ -65,8 +66,10 @@ export default function Lectures() {
   };
   
   return (
+    // Добавила меню
+    <div><NavMenu />
     <div className="create-container">
-      <h2 className="Heading">РЕДАКТОР ЛЕКЦИЙ</h2>
+      {/*<h2 className="Heading">РЕДАКТОР ЛЕКЦИЙ</h2>*/}
       <div className="SpaceForCreate">
         
         <input
@@ -127,6 +130,7 @@ export default function Lectures() {
           Сохранить
         </button>
       </div>
+    </div>
     </div>
   );
 }

@@ -25,7 +25,7 @@ export default function App() {
         <Route path="/registration" element={<Registration />} />
         */}
 
-       {/*Страница с лекциями старотовая*/}
+       {/*Страница с лекциями стартовая*/}
         <Route 
         path="/"
         element={<Lectures/>} />

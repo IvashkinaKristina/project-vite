@@ -1,6 +1,7 @@
 import "./Lectures.css";
 import React, { useState } from "react";
 import VideoSpace from "../VideoSpace/VideoSpace";
+import NavMenu from "../NavMenu/NavMenu";
 
 export default function Lectures() {
     const [activeLecture, setActiveLecture] = useState(null);
@@ -20,6 +21,9 @@ export default function Lectures() {
     };
 
    return (
+    <div>
+            {/* NavMenu ПЕРЕД основным контентом */}
+            <NavMenu />
     <div className="ContainerForAll">
       <div className="ContentLectures">
         {!activeLecture && (
@@ -37,6 +41,7 @@ export default function Lectures() {
         {activeLecture &&
           lectures.find((lecture) => lecture.id === activeLecture)?.component}
       </div>
+    </div>
     </div>
   );
 }
