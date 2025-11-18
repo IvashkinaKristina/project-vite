@@ -1,4 +1,4 @@
-MainBody {
+.MainBody {
   display: flex;
   flex-direction: column; /* Располагаем элементы друг под другом */
   align-items: center;  /* Центрируем по горизонтали */
@@ -12,14 +12,14 @@ justify-content: center;
 flex-direction: column; /* Изменили на column, чтобы элементы шли друг под другом */
 background-color: #463783;
 height: auto; /* Убираем фиксированную высоту, чтобы контент помещался */
-width: 54rem;
+width: 70rem;
 padding: 1.25rem;
 border-radius: 1.25rem;
 margin-bottom: 20px; /* Отступ между контейнером видео и кнопкой */
 }
 
 .Container-VideoSpace > * {
-margin-bottom: 1rem; /* Отступы между элементами внутри container-videoSpace */
+margin-bottom: 3rem; /* Отступы между элементами внутри container-videoSpace */
 }
 
 
