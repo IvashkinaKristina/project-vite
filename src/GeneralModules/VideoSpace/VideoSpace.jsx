@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import "./VideoSpace.css";
 
-const videoFile = "/videos/ЛЕКЦИЯ_1.mp4";
+const videoFile = "/videos/Лекция1.mp4";
 
 // Добавляем конфигурацию вопросов с временными метками
 const videoQuestions = [
