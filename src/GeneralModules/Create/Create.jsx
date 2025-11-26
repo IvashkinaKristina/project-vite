@@ -7,6 +7,7 @@ export default function Lectures() {
   const [videoPreview, setVideoPreview] = useState(null);
   const fileInputRef = useRef(null);
   const dropAreaRef = useRef(null);
+  const [showForm, setShowForm] = useState(false);
 
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
@@ -109,11 +110,90 @@ export default function Lectures() {
           id="1"
         />
 
-       <button className="ButtonNewQuestion">
+       <button 
+          className="ButtonNewQuestion" 
+          onClick={() => setShowForm(true)}
+       >
           Добавить вопросы в лекцию
         </button>
 
- {/*<div className="button-container">
+            {/* Всплывающая форма */}
+      {showForm && (
+        <>
+          <div 
+            style={{
+              position: 'fixed',
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              backgroundColor: 'rgba(0, 0, 0, 0.5)',
+              zIndex: 999
+            }} 
+            onClick={() => setShowForm(false)}
+          />
+          <div style={{
+            position: 'fixed',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            backgroundColor: 'white',
+            padding: '30px',
+            borderRadius: '12px',
+            boxShadow: '0 10px 30px rgba(0, 0, 0, 0.3)',
+            zIndex: 1000,
+            minWidth: '400px'
+          }}>
+            <h3 style={{margin: '0 0 20px 0', fontSize: '24px', color: '#333', textAlign: 'center'}}>
+              Форма создания вопросов
+            </h3>
+            <form>
+              <div style={{marginBottom: '20px'}}>
+                <input 
+                  type="text" 
+                  placeholder="Введите данные..." 
+                  style={{
+                    width: '100%',
+                    padding: '12px',
+                    border: '2px solid #e1e1e1',
+                    borderRadius: '6px',
+                    fontSize: '16px',
+                    boxSizing: 'border-box'
+                  }}
+                />
+              </div>
+              <button 
+                type="button" 
+                style={{
+                  padding: '10px 20px',
+                  border: 'none',
+                  backgroundColor: '#6c757d',
+                  color: 'white',
+                  borderRadius: '6px',
+                  cursor: 'pointer',
+                  fontSize: '16px',
+                  width: '100%'
+                }}
+                onClick={() => setShowForm(false)}
+              >
+                Закрыть
+              </button>
+            </form>
+          </div>
+        </>
+      )}
+
+
+        <button className="UploadButton" onClick={handleUpload}>
+          Сохранить
+        </button>
+      </div>
+    </div>
+    </div>
+  );
+}
+
+{/*<div className="button-container">
          <button className="icon-button" onClick={handleButtonClick}>
             <img src="/images/Upload.png" alt="Upload" />
           </button>
@@ -130,12 +210,3 @@ export default function Lectures() {
             <img src="/images/Settings.png" alt="Settings" />
           </button>
         </div> */}
-
-        <button className="UploadButton" onClick={handleUpload}>
-          Сохранить
-        </button>
-      </div>
-    </div>
-    </div>
-  );
-}
