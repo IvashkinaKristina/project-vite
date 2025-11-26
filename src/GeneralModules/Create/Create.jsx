@@ -84,6 +84,13 @@ export default function Lectures() {
           ref={dropAreaRef}
           onDrop={handleDrop}
           onDragOver={handleDragOver}
+          onClick={(e) => {
+            // не кликается, если видео уже загружено
+            if (!videoPreview) {
+              handleButtonClick();
+            }
+          }}
+          style={{ cursor: videoPreview ? 'default' : 'pointer' }} // Меняется курсор
         >
           {videoPreview ? (
             <video controls className="video-preview">
@@ -101,15 +108,13 @@ export default function Lectures() {
           placeholder="Добавить название лекции"
           id="1"
         />
-        <input
-          className="InputCreate"
-          type="text"
-          placeholder="Добавить краткое описание лекции"
-          id="2"
-        />
 
-<div className="button-container">
-          <button className="icon-button" onClick={handleButtonClick}>
+       <button className="ButtonNewQuestion">
+          Добавить вопросы в лекцию
+        </button>
+
+ {/*<div className="button-container">
+         <button className="icon-button" onClick={handleButtonClick}>
             <img src="/images/Upload.png" alt="Upload" />
           </button>
           <button className="icon-button">
@@ -124,7 +129,7 @@ export default function Lectures() {
           <button className="icon-button">
             <img src="/images/Settings.png" alt="Settings" />
           </button>
-        </div>
+        </div> */}
 
         <button className="UploadButton" onClick={handleUpload}>
           Сохранить
