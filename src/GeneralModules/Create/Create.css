@@ -9,10 +9,13 @@ h2{
   display: flex;
   flex-direction: column;
   align-items: center;
+   margin-left: 12rem;
 }
+
 .Heading {
   color: black;
 }
+
 .SpaceForCreate {
   display: flex;
   flex-direction: column;
@@ -20,16 +23,16 @@ h2{
   justify-content: center;
   flex-wrap: wrap;
   background-color: #463783;
-  width: 57rem;
+  width: 95%;
   padding: 1.25rem;
   border-radius: 1.25rem;
   
 }
+
 .video-drop-area {
-  margin: 2rem;
   width: 100%;
-  max-width: 50rem;
-  height: 20rem;
+  max-width: 60rem;
+  height: 27rem;
   padding: 0;
   border: none;
   border-radius: 1.25rem;
@@ -42,9 +45,7 @@ h2{
   font-size: 1.2rem;
   overflow: hidden; /* Чтобы видео не выходило за края формы */
 }
-.video-drop-area p {
-  margin: 0;
-}
+
 .video-preview {
   width: 100%;
   height: 100%;
@@ -53,21 +54,20 @@ h2{
   background-color: #000;
 }
 .InputCreate {
-  width: 50rem;
-  height: 2rem;
+  margin: 1rem;
+  width: 60rem;
+  height: 3rem;
   border-radius: 1rem;
   background-color: rgb(255, 255, 255);
-  font-size: 0.7rem;
-  margin-bottom: 2rem;
+  font-size: 1rem;
 }
 
 .ButtonNewQuestion
 {
 width: 30rem;
 border-radius: 1rem;
- margin-bottom: 2rem;
+margin: 1rem;
 }
-
 
 
 .UploadButton {
@@ -81,7 +81,6 @@ border-radius: 1rem;
   display: flex;
   justify-content: space-around;
   width: 100%;
-  margin-bottom: 1.25rem; 
 }
 
 .icon-button {
