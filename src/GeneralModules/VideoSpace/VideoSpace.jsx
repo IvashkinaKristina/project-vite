@@ -3,28 +3,41 @@ import "./VideoSpace.css";
 
 const videoFile = "/videos/Лекция1.mp4";
 
-// Добавляем конфигурацию вопросов с временными метками
+// Заменяем конфигурацию вопросов на новую (с типами: multiple-choice и text-input)
 const videoQuestions = [
   {
     time: 7,
-    question: "Вопрос 1: Прямоугольная таблица, образованная из элементов некоторого множества и состоящая из m строк и n столбцов - это (ответ вписывайте с большой буквой)",
+    question: "Вопрос 1: Прямоугольная таблица, образованная из элементов некоторого множества и состоящая из m строк и n столбцов - это",
+    type: "multiple-choice",
+    options: [
+      "Матрица",
+      "Вектор",
+      "Функция"
+    ],
     correctAnswer: "Матрица",
     image: null,
     hint: "Вспомните основное определение из начала лекции"
   },
   {
     time: 34, 
-    question: "Определите, к какому из изученных видов относится матрица, изображённая ниже (ответ вписывайте с большой буквой)",
+    question: "Определите, к какому из изученных видов относится матрица, изображённая ниже",
+    type: "multiple-choice",
+    options: [
+      "Диагональная",
+      "Единичная",
+      "Треугольная"
+    ],
     correctAnswer: "Диагональная",
     image: "/images/вопрос 2 всплывающего окна.png",
     hint: "Посмотрите на расположение ненулевых элементов"
   },
   {
-    time: 48, // на 12 секунде
-    question: "Как называется матрица, все элементы которой равны нулю, и как она обозначается? (ответ вписывайте с большой буквой без запятой, только с ПРОБЕЛОМ) ",
+    time: 48,
+    question: "Как называется матрица, все элементы которой равны нулю, и как она обозначается? (ответ вписывайте с большой буквы)",
+    type: "text-input",
     correctAnswer: "Нулевая О",
     image: null,
-    hint: "В математике её называют 'абсолютным нулём' — она не меняет другие матрицы при сложении, а её обозначение совпадает с буквой, которая часто символизирует начало координат"
+    hint: "В математике её называют 'абсолютным нулём' — она не меняет другие матрицы при сложении"
   }
 ];
 
@@ -52,37 +65,85 @@ const testQuestions = [
 
 const VideoSpace = ({ onBack }) => {
   const videoRef = useRef(null);
-  const [currentQuestion, setCurrentQuestion] = useState(null); // Текущий активный вопрос
-  const [answeredQuestions, setAnsweredQuestions] = useState([]); // Отслеживаем отвеченные вопросы
+  const [currentQuestion, setCurrentQuestion] = useState(null);
+  const [answeredQuestions, setAnsweredQuestions] = useState([]);
   const [userAnswer, setUserAnswer] = useState('');
   const [testAnswers, setTestAnswers] = useState(Array(testQuestions.length).fill(null));
   const [testCompleted, setTestCompleted] = useState(false);
   const [testResults, setTestResults] = useState({ correct: 0, total: testQuestions.length });
- 
-  //КОД ДЛЯ ВСПЛЫВАЮЩЕЙ ПОДСКАЗКИ 
+  const [wasFullscreen, setWasFullscreen] = useState(false);
   const [wrongAttempts, setWrongAttempts] = useState(0);
   const [showHint, setShowHint] = useState(false);
-  // ДОБАВЛЕНО: состояние для сообщения "Верно!"
   const [showCorrect, setShowCorrect] = useState(false);
-  //КОНЕЦ КОДА ДЛЯ ВСПЛЫВАЮЩЕЙ ПОДСКАЗКИ
+  // ДОБАВЛЕНО: состояние для выбранного варианта
+  const [selectedOption, setSelectedOption] = useState(null);
+
+  // Функции для полноэкранного режима (остаются без изменений)
+  const isFullscreen = () => {
+    return (
+      document.fullscreenElement ||
+      document.webkitFullscreenElement ||
+      document.mozFullScreenElement ||
+      document.msFullscreenElement
+    );
+  };
+
+  const exitFullscreen = () => {
+    if (document.exitFullscreen) {
+      document.exitFullscreen();
+    } else if (document.webkitExitFullscreen) {
+      document.webkitExitFullscreen();
+    } else if (document.mozCancelFullScreen) {
+      document.mozCancelFullScreen();
+    } else if (document.msExitFullscreen) {
+      document.msExitFullscreen();
+    }
+  };
+
+  const enterFullscreen = (element) => {
+    if (element.requestFullscreen) {
+      element.requestFullscreen();
+    } else if (element.webkitRequestFullscreen) {
+      element.webkitRequestFullscreen();
+    } else if (element.mozRequestFullScreen) {
+      element.mozRequestFullScreen();
+    } else if (element.msRequestFullscreen) {
+      element.msRequestFullscreen();
+    }
+  };
 
   // Обработчик времени видео
   useEffect(() => {
     const video = videoRef.current;
     
     const handleTimeUpdate = () => {
-      // Проверяем все вопросы из videoQuestions
       videoQuestions.forEach((q) => {
-        // Если время подошло и вопрос еще не был показан и не отвечен
         if (video.currentTime >= q.time && 
             !answeredQuestions.includes(q.time) && 
             currentQuestion?.time !== q.time) {
-          video.pause();
-          setCurrentQuestion(q);
-          setUserAnswer("");
-          setWrongAttempts(0);
-          setShowHint(false);
-          setShowCorrect(false); // ДОБАВЛЕНО: сбрасываем сообщение "Верно!" при новом вопросе
+          if (isFullscreen()) {
+            setWasFullscreen(true);
+            exitFullscreen();
+            
+            setTimeout(() => {
+              video.pause();
+              setCurrentQuestion(q);
+              setUserAnswer("");
+              setSelectedOption(null); // ДОБАВЛЕНО: сбрасываем выбранный вариант
+              setWrongAttempts(0);
+              setShowHint(false);
+              setShowCorrect(false);
+            }, 300);
+          } else {
+            video.pause();
+            setCurrentQuestion(q);
+            setUserAnswer("");
+            setSelectedOption(null); // ДОБАВЛЕНО: сбрасываем выбранный вариант
+            setWrongAttempts(0);
+            setShowHint(false);
+            setShowCorrect(false);
+            setWasFullscreen(false);
+          }
         }
       });
     };
@@ -91,22 +152,68 @@ const VideoSpace = ({ onBack }) => {
     return () => video.removeEventListener('timeupdate', handleTimeUpdate);
   }, [currentQuestion, answeredQuestions]);
 
+  // ДОБАВЛЕНО: обработчик выбора варианта для multiple-choice
+  const handleOptionSelect = (option) => {
+    setSelectedOption(option);
+  };
+
+  // ДОБАВЛЕНО: обработчик отправки ответа для вариантов с выбором
+  const handleMultipleChoiceSubmit = () => {
+    if (selectedOption && currentQuestion) {
+      if (selectedOption === currentQuestion.correctAnswer) {
+        setShowCorrect(true);
+        setTimeout(() => {
+          setAnsweredQuestions(prev => [...prev, currentQuestion.time]);
+          setCurrentQuestion(null);
+          if (wasFullscreen && videoRef.current) {
+            videoRef.current.play().catch(e => console.error("Ошибка воспроизведения:", e));
+            setTimeout(() => {
+              enterFullscreen(videoRef.current);
+              setWasFullscreen(false);
+            }, 500);
+          } else {
+            videoRef.current.play().catch(e => console.error("Ошибка воспроизведения:", e));
+          }
+          setSelectedOption(null);
+          setWrongAttempts(0);
+          setShowHint(false);
+          setShowCorrect(false);
+        }, 1000);
+      } else {
+        const attempts = wrongAttempts + 1;
+        setWrongAttempts(attempts);
+        setSelectedOption(null);
+        
+        if (attempts >= 3) {
+          setShowHint(true);
+        }
+      }
+    }
+  };
+
+  // Существующая функция для текстовых ответов (немного модифицирована)
   const handleAnswerSubmit = (e) => {
     if (e.key === 'Enter' && currentQuestion) {
       if (userAnswer.trim() === currentQuestion.correctAnswer) {
-        // Правильный ответ
-        setShowCorrect(true); // ДОБАВЛЕНО: показываем сообщение "Верно!"
+        setShowCorrect(true);
         setTimeout(() => {
-        setAnsweredQuestions(prev => [...prev, currentQuestion.time]);
-        setCurrentQuestion(null);
-        videoRef.current.play().catch(e => console.error("Ошибка воспроизведения:", e));
-        setUserAnswer("");
-        setWrongAttempts(0);
-        setShowHint(false);
-        setShowCorrect(false); // ДОБАВЛЕНО: скрывает сообщение после задержки
-        }, 1000); // ДОБАВЛЕНО: задержка 1 секунда перед закрытием окна
+          setAnsweredQuestions(prev => [...prev, currentQuestion.time]);
+          setCurrentQuestion(null);
+          if (wasFullscreen && videoRef.current) {
+            videoRef.current.play().catch(e => console.error("Ошибка воспроизведения:", e));
+            setTimeout(() => {
+              enterFullscreen(videoRef.current);
+              setWasFullscreen(false);
+            }, 500);
+          } else {
+            videoRef.current.play().catch(e => console.error("Ошибка воспроизведения:", e));
+          }
+          setUserAnswer("");
+          setWrongAttempts(0);
+          setShowHint(false);
+          setShowCorrect(false);
+        }, 1000);
       } else {
-        // Неправильный ответ
         const attempts = wrongAttempts + 1;
         setWrongAttempts(attempts);
         setUserAnswer("");
@@ -115,7 +222,6 @@ const VideoSpace = ({ onBack }) => {
           e.target.placeholder = "Введите ваш ответ";
         }, 2000);
         
-        // Показываем подсказку после 3 неверных попыток
         if (attempts >= 3) {
           setShowHint(true);
         }
@@ -123,7 +229,7 @@ const VideoSpace = ({ onBack }) => {
     }
   };
 
-  // Остальные функции остаются без изменений
+  // Остальные функции без изменений
   const handleAnswerSelect = (questionIndex, selectedOption) => {
     const newAnswers = [...testAnswers];
     newAnswers[questionIndex] = selectedOption;
@@ -148,10 +254,9 @@ const VideoSpace = ({ onBack }) => {
           ref={videoRef}
           src={videoFile}
           controls
-          width={779}
+          width={820}
         ></video>
 
-        {/* Всплывающие вопросы */}
         {currentQuestion && (
           <div className="question-modal">
             <div className="question-content">
@@ -164,24 +269,51 @@ const VideoSpace = ({ onBack }) => {
                   />
                 )}
               </div>
-              <input
-                type="text"
-                value={userAnswer}
-                onChange={(e) => setUserAnswer(e.target.value)}
-                onKeyDown={handleAnswerSubmit}
-                placeholder="Введите ваш ответ"
-                autoFocus
-                className="answer-input"
-              />
-              {/* ДОБАВЛЕНО: сообщение "Верно!" с CSS классом */}
+              
+              {/* ДОБАВЛЕНО: блок выбора вариантов для multiple-choice */}
+              {currentQuestion.type === "multiple-choice" && (
+                <div className="options-container">
+                  {currentQuestion.options.map((option, index) => (
+                    <div 
+                      key={index}
+                      className={`option ${selectedOption === option ? 'selected' : ''}`}
+                      onClick={() => handleOptionSelect(option)}
+                    >
+                      {option}
+                    </div>
+                  ))}
+                  <button 
+                    onClick={handleMultipleChoiceSubmit}
+                    disabled={!selectedOption}
+                    className="submit-option-btn"
+                  >
+                    Ответить
+                  </button>
+                </div>
+              )}
+
+              {/* Существующий блок для text-input */}
+              {(currentQuestion.type === "text-input" || !currentQuestion.type) && (
+                <div className="text-input-container">
+                  <input
+                    type="text"
+                    value={userAnswer}
+                    onChange={(e) => setUserAnswer(e.target.value)}
+                    onKeyDown={handleAnswerSubmit}
+                    placeholder="Введите ваш ответ"
+                    autoFocus
+                    className="answer-input"
+                  />
+                  <p className="hint">Нажмите Enter чтобы продолжить</p>
+                </div>
+              )}
+
               {showCorrect && (
                 <div className="correct-message">
                   Верно!
                 </div>
-                 )}
-              <p className="hint">Нажмите Enter чтобы продолжить</p>
+              )}
 
-              {/* Подсказка */}
               {showHint && (
                 <div className="hint-cloud">
                   <div className="cloud-content">
@@ -202,7 +334,6 @@ const VideoSpace = ({ onBack }) => {
           </div>
         )}
 
-        {/* Блок с тестом (закомментирован) */}
         {/*
         <div className="test-container">
           <h2>Тест</h2>
