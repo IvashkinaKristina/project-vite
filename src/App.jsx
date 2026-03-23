@@ -1,51 +1,51 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
-import "./App.css";
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import Menu from "./pages/Menu/Menu.jsx";
-import Main from "./pages/Main/Baze.jsx";
-import Registration from "./pages/Registration/Registration.jsx";
-import Lectures from './GeneralModules/Lectures/Lectures.jsx';
-import PersonalAccount from './GeneralModules/PersonalAccount/PersonalAccount.jsx';
-import Create from './GeneralModules/Create/Create.jsx';
-import { getCurrentUser } from './services/api';
+import { useAuth } from './context/AuthContext';
+import Login from './pages/Auth/Login';
+import Register from './pages/Auth/Register';
+import Lectures from './GeneralModules/Lectures/Lectures';
+import Create from './GeneralModules/Create/Create';
+import PersonalAccount from './GeneralModules/PersonalAccount/PersonalAccount';
 
-function ProtectedRoute({ children }) {
-  const user = getCurrentUser();
-  return user ? children : <Navigate to="/" replace />;
-}
+const PrivateRoute = ({ children, allowedRoles }) => {
+  const { user, loading } = useAuth();
+  if (loading) return <div>Загрузка...</div>;
+  if (!user) return <Navigate to="/login" replace />;
+  if (allowedRoles && !allowedRoles.includes(user.role)) {
+    return <Navigate to="/" replace />;
+  }
+  return children;
+};
 
-export default function App() {
+function App() {
   return (
     <BrowserRouter>
       <Routes>
-        {/* ЗАКОММЕНТИРОВАНА: главную страницу с регистрацией и авторизацией */}
-        {/*
-        <Route path="/" element={<Main />} />
-        <Route path="/registration" element={<Registration />} />
-        */}
-
-       {/*Страница с лекциями стартовая*/}
-        <Route 
-        path="/"
-        element={<Lectures/>} />
-
-        <Route path="/lectures" element={<Lectures />} />
-        <Route path="/personal-account" element={<PersonalAccount/>} />
-        <Route path="/create" element={<Create />} />
-
-
-        {/*
-        <Route 
-          path="/menu" 
-          element={
-            <ProtectedRoute>
-              <Menu />
-            </ProtectedRoute>
-          } 
-        />
-        */}
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/" element={
+          <PrivateRoute allowedRoles={['student', 'teacher']}>
+            <Lectures />
+          </PrivateRoute>
+        } />
+        <Route path="/lectures" element={
+          <PrivateRoute allowedRoles={['student', 'teacher']}>
+            <Lectures />
+          </PrivateRoute>
+        } />
+        <Route path="/create" element={
+          <PrivateRoute allowedRoles={['teacher']}>
+            <Create />
+          </PrivateRoute>
+        } />
+        <Route path="/personal-account" element={
+          <PrivateRoute allowedRoles={['student', 'teacher']}>
+            <PersonalAccount />
+          </PrivateRoute>
+        } />
       </Routes>
     </BrowserRouter>
   );
 }
+
+export default App;
