@@ -159,7 +159,7 @@ const VideoSpace = ({ videoUrl, questions, onBack }) => {
           ref={videoRef}
           src={videoUrl}
           controls
-          width={820}
+          style={{ width: '100%', maxWidth: '820px', height: 'auto' }}
         ></video>
 
         {currentQuestion && (

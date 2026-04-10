@@ -100,3 +100,36 @@ margin: 1rem;
   max-height: 2.5rem;
 }
 
+@media (max-width: 768px) {
+  .create-container {
+    margin-left: 0;
+    padding: 10px;
+  }
+  .SpaceForCreate {
+    width: 100%;
+    padding: 10px;
+  }
+  .video-drop-area {
+    height: auto;
+    min-height: 200px;
+  }
+  .InputCreate {
+    width: 100%;
+  }
+  .ButtonNewQuestion, .UploadButton {
+    width: 100%;
+  }
+  .button-container {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
+  .icon-button {
+    margin: 5px;
+  }
+}
+@media (max-width: 480px) {
+  .video-drop-area {
+    min-height: 150px;
+  }
+}

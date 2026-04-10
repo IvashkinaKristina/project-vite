@@ -28,3 +28,24 @@
   font-weight: bold; 
   font-size: 1.5rem; 
 }
+
+@media (max-width: 768px) {
+  .ContainerForAll {
+    margin-left: 0;
+    flex-direction: column;
+  }
+  .ContentLectures {
+    padding: 10px;
+  }
+  .Content-button-Lectures {
+    width: 90%;
+    font-size: 1.2rem;
+    padding: 0.8rem;
+  }
+}
+@media (max-width: 480px) {
+  .Content-button-Lectures {
+    width: 100%;
+    font-size: 1rem;
+  }
+}

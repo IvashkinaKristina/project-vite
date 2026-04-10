@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useAuth } from '../../context/AuthContext';
 import { useNavigate, Link } from 'react-router-dom';
+import './Register.css';  // подключаем стили
 
 export default function Register() {
   const [email, setEmail] = useState('');
@@ -22,54 +23,65 @@ export default function Register() {
   };
 
   return (
-    <div style={{ maxWidth: '400px', margin: '50px auto' }}>
-      <h2>Регистрация</h2>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Имя"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          required
-          style={{ width: '100%', marginBottom: '10px', padding: '8px' }}
-        />
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-          style={{ width: '100%', marginBottom: '10px', padding: '8px' }}
-        />
-        <input
-          type="password"
-          placeholder="Пароль"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-          style={{ width: '100%', marginBottom: '10px', padding: '8px' }}
-        />
-        <select
-          value={role}
-          onChange={(e) => setRole(e.target.value)}
-          style={{ width: '100%', marginBottom: '10px', padding: '8px' }}
-        >
-          <option value="student">Студент</option>
-          <option value="teacher">Преподаватель</option>
-        </select>
-        {role === 'student' && (
-          <input
-            type="text"
-            placeholder="Группа"
-            value={groupName}
-            onChange={(e) => setGroupName(e.target.value)}
-            required
-            style={{ width: '100%', marginBottom: '10px', padding: '8px' }}
-          />
-        )}
-        <button type="submit">Зарегистрироваться</button>
-      </form>
-      <p>Уже есть аккаунт? <Link to="/login">Войти</Link></p>
+    <div className="login-page">
+      <div className="login-card">
+        <h2>РЕГИСТРАЦИЯ</h2>
+        <form onSubmit={handleSubmit}>
+          <div className="input-group">
+            <label>Имя</label>
+            <input
+              type="text"
+              placeholder="Ваше имя"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              required
+            />
+          </div>
+          <div className="input-group">
+            <label>Email</label>
+            <input
+              type="email"
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </div>
+          <div className="input-group">
+            <label>Пароль</label>
+            <input
+              type="password"
+              placeholder="Пароль"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </div>
+          <div className="input-group">
+            <label>Роль</label>
+            <select value={role} onChange={(e) => setRole(e.target.value)}>
+              <option value="student">Студент</option>
+              <option value="teacher">Преподаватель</option>
+            </select>
+          </div>
+          {role === 'student' && (
+            <div className="input-group">
+              <label>Группа</label>
+              <input
+                type="text"
+                placeholder="Название группы"
+                value={groupName}
+                onChange={(e) => setGroupName(e.target.value)}
+                required
+              />
+            </div>
+          )}
+          <button type="submit" className="login-btn">ЗАРЕГИСТРИРОВАТЬСЯ</button>
+        </form>
+        <div className="register-link">
+          Уже есть аккаунт? <Link to="/login">Войти</Link>
+        </div>
+      </div>
     </div>
   );
 }

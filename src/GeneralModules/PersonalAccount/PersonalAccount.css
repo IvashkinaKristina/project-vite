@@ -66,3 +66,35 @@
   margin-right: 0.5rem; /* Небольшой отступ между label и значением */
 }
 
+@media (max-width: 768px) {
+  .container-all {
+    margin-left: 0;
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+  }
+  .user-info {
+    align-items: center;
+    margin-right: 0;
+  }
+  .user-photo {
+    width: 150px;
+    height: 150px;
+    margin-left: 0;
+  }
+  .button-account {
+    margin-left: 0;
+    align-self: center;
+  }
+  .user-info-details {
+    align-items: center;
+  }
+  .info-row {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .info-background {
+    margin-top: 5px;
+  }
+}

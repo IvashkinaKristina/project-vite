@@ -265,21 +265,37 @@ background: rgb(255, 255, 255);
 @media (max-width: 768px) {
   .Container-VideoSpace {
     width: 95%;
-    padding: 1rem;
+    height: auto;
+    padding: 10px;
+    margin-right: 0;
   }
-  
+  .Container-VideoSpace > * {
+    margin-bottom: 1rem;
+  }
   .question-content {
     width: 90%;
-    margin: 0 auto;
+    padding: 1rem;
+    min-height: auto;
   }
-  
   .hint-cloud {
     position: static;
     width: 100%;
     margin-top: 10px;
   }
-  
   .cloud-arrow {
     display: none;
+  }
+  .options-container .option {
+    font-size: 14px;
+    padding: 8px;
+  }
+}
+@media (max-width: 480px) {
+  .ButtonBack {
+    width: 100%;
+    text-align: center;
+  }
+  .question-with-image {
+    font-size: 1rem;
   }
 }

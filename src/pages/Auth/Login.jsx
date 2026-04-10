@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useAuth } from '../../context/AuthContext';
 import { useNavigate, Link } from 'react-router-dom';
+import './Login.css';
 
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -19,28 +20,36 @@ export default function Login() {
   };
 
   return (
-    <div style={{ maxWidth: '400px', margin: '50px auto' }}>
-      <h2>Вход</h2>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-          style={{ width: '100%', marginBottom: '10px', padding: '8px' }}
-        />
-        <input
-          type="password"
-          placeholder="Пароль"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-          style={{ width: '100%', marginBottom: '10px', padding: '8px' }}
-        />
-        <button type="submit">Войти</button>
-      </form>
-      <p>Нет аккаунта? <Link to="/register">Зарегистрироваться</Link></p>
+    <div className="login-page">
+      <div className="login-card">
+        <h2>АВТОРИЗАЦИЯ</h2>
+        <form onSubmit={handleSubmit}>
+          <div className="input-group">
+            <label>Email</label>
+            <input
+              type="email"
+              placeholder="Введите ваш email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </div>
+          <div className="input-group">
+            <label>Пароль</label>
+            <input
+              type="password"
+              placeholder="Введите пароль"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </div>
+          <button type="submit" className="login-btn">ВХОД</button>
+        </form>
+        <div className="register-link">
+          Нет аккаунта? <Link to="/register">Зарегистрироваться</Link>
+        </div>
+      </div>
     </div>
   );
 }
