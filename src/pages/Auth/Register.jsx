@@ -4,9 +4,11 @@ import { useNavigate, Link } from 'react-router-dom';
 import './Register.css';  // подключаем стили
 
 export default function Register() {
+  const [lastName, setLastName] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [patronymic, setPatronymic] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [name, setName] = useState('');
   const [role, setRole] = useState('student');
   const [groupName, setGroupName] = useState('');
   const { signUp } = useAuth();
@@ -14,8 +16,14 @@ export default function Register() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    // Собираем полное ФИО
+    const fullName = `${lastName} ${firstName} ${patronymic}`.trim().replace(/\s+/g, ' ');
+    if (!lastName || !firstName) {
+      alert('Пожалуйста, заполните фамилию и имя');
+      return;
+    }
     try {
-      await signUp(email, password, name, role, groupName);
+      await signUp(email, password, fullName, role, groupName);
       navigate('/');
     } catch (err) {
       alert(err.response?.data?.error || 'Ошибка регистрации');
@@ -28,13 +36,32 @@ export default function Register() {
         <h2>РЕГИСТРАЦИЯ</h2>
         <form onSubmit={handleSubmit}>
           <div className="input-group">
-            <label>Имя</label>
+             <label>Фамилия *</label>
+            <input
+              type="text"
+              placeholder="Ваша фамилия"
+              value={lastName}
+              onChange={(e) => setLastName(e.target.value)}
+              required
+            />
+          </div>
+          <div className="input-group">
+            <label>Имя *</label>
             <input
               type="text"
               placeholder="Ваше имя"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
               required
+            />
+          </div>
+          <div className="input-group">
+            <label>Отчество</label>
+            <input
+              type="text"
+              placeholder="Ваше отчество"
+              value={patronymic}
+              onChange={(e) => setPatronymic(e.target.value)}
             />
           </div>
           <div className="input-group">

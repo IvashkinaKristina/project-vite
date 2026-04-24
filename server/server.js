@@ -164,3 +164,40 @@ app.get('/api/lectures/:id', authenticate, (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
 });
+
+// Редактирование лекции (PUT)
+app.put('/api/lectures/:id', authenticate, upload.single('video'), (req, res) => {
+  if (req.user.role !== 'teacher') {
+    return res.status(403).json({ error: 'Доступ только преподавателям' });
+  }
+  const lectureId = req.params.id;
+  const { title, questions } = req.body;
+  if (!title) {
+    return res.status(400).json({ error: 'Название обязательно' });
+  }
+  let parsedQuestions;
+  try {
+    parsedQuestions = JSON.parse(questions);
+  } catch (e) {
+    return res.status(400).json({ error: 'Некорректный формат вопросов' });
+  }
+  db.get('SELECT * FROM lectures WHERE id = ?', [lectureId], (err, row) => {
+    if (err) return res.status(500).json({ error: err.message });
+    if (!row) return res.status(404).json({ error: 'Лекция не найдена' });
+    if (row.teacher_id !== req.user.id) {
+      return res.status(403).json({ error: 'Нельзя редактировать чужую лекцию' });
+    }
+    let videoUrl = row.video_url;
+    if (req.file) {
+      const oldPath = path.join(__dirname, row.video_url);
+      if (fs.existsSync(oldPath)) fs.unlinkSync(oldPath);
+      videoUrl = `/uploads/${req.file.filename}`;
+    }
+    const stmt = db.prepare('UPDATE lectures SET title = ?, video_url = ?, questions = ? WHERE id = ?');
+    stmt.run(title, videoUrl, JSON.stringify(parsedQuestions), lectureId, function(err) {
+      if (err) return res.status(500).json({ error: err.message });
+      res.json({ message: 'Лекция обновлена' });
+    });
+    stmt.finalize();
+  });
+});

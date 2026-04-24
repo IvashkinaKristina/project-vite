@@ -55,3 +55,10 @@ export const getLecture = async (id) => {
   const response = await api.get(`/lectures/${id}`);
   return response.data;
 };
+
+export const updateLecture = async (id, formData) => {
+  const response = await api.put(`/lectures/${id}`, formData, {
+    headers: { 'Content-Type': 'multipart/form-data' },
+  });
+  return response.data;
+};

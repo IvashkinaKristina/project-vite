@@ -2,13 +2,12 @@
   display: flex;
   background-color: white;
   margin-left: 250px;
-
 }
 
 .ContentLectures {
   flex: 1;
   padding: 1.25rem;
-  margin: 0 auto; 
+  margin: 0 auto;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -16,17 +15,25 @@
 }
 
 .Content-button-Lectures {
-  background-color: #463783;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
   border: none;
   padding: 1rem;
   margin-bottom: 3%;
   cursor: pointer;
   width: 80%;
-  height: 10%;
   border-radius: 1.25rem;
-  font-weight: bold; 
-  font-size: 1.5rem; 
+  font-weight: bold;
+  font-size: 1.5rem;
+  font-family: 'Segoe UI', 'Roboto', 'Arial', sans-serif;
+  letter-spacing: 0.5px;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.Content-button-Lectures:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2);
 }
 
 @media (max-width: 768px) {
@@ -43,9 +50,244 @@
     padding: 0.8rem;
   }
 }
+
 @media (max-width: 480px) {
   .Content-button-Lectures {
     width: 100%;
     font-size: 1rem;
+  }
+}
+
+/* ========= ДОПОЛНЕНИЕ ДЛЯ РЕДАКТИРОВАНИЯ ========= */
+/* Контейнер для пары (кнопка лекции + кнопка редактирования) */
+.lecture-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: 80%;
+  margin-bottom: 1.5rem;
+}
+
+/* Кнопка редактирования – фиолетовый градиент */
+.edit-lecture-btn {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  padding: 0.8rem 1.2rem;
+  border-radius: 1.25rem;
+  font-weight: bold;
+  font-size: 1rem;
+  font-family: 'Segoe UI', 'Roboto', 'Arial', sans-serif;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  white-space: nowrap;
+}
+
+.edit-lecture-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(135deg, #5a4a9e 0%, #3a2a6e 100%);
+}
+
+/* Адаптивность кнопок */
+@media (max-width: 768px) {
+  .lecture-item {
+    width: 90%;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .edit-lecture-btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+  }
+}
+@media (max-width: 480px) {
+  .lecture-item {
+    width: 100%;
+    flex-direction: column;
+  }
+  .edit-lecture-btn {
+    width: 100%;
+    text-align: center;
+    white-space: normal;
+  }
+}
+
+/* ========= СТИЛИ ДЛЯ МОДАЛЬНОГО ОКНА РЕДАКТИРОВАНИЯ (красивая, ровная форма) ========= */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  z-index: 999;
+}
+
+.modal-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  border-radius: 24px;
+  padding: 20px;
+  width: 90%;
+  max-width: 650px;
+  max-height: 85vh;
+  overflow-y: auto;
+  overflow-x: hidden;   /* убираем горизонтальную прокрутку */
+  z-index: 1000;
+  box-shadow: 0 20px 35px rgba(0, 0, 0, 0.3);
+  box-sizing: border-box;
+}
+
+.modal-container * {
+  box-sizing: border-box;
+}
+
+.modal-container h2 {
+  margin: 0 0 16px;
+  text-align: center;
+  color: #2c1d55;
+  font-size: 1.6rem;
+}
+
+.modal-container h3 {
+  margin: 20px 0 12px;
+  color: #463783;
+  font-size: 1.2rem;
+  padding-left: 10px;
+}
+
+.edit-title-input {
+  width: 100%;
+  padding: 10px 15px;
+  border: 1px solid #ddd;
+  border-radius: 40px;
+  font-size: 1rem;
+  margin-bottom: 20px;
+}
+
+.edit-title-input:focus {
+  border-color: #667eea;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+}
+
+.edit-video-group {
+  margin-bottom: 20px;
+}
+
+.edit-video-group label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #2c3e50;
+}
+
+.edit-video-group input {
+  width: 100%;
+}
+
+/* Карточка вопроса – без вылезаний */
+.edit-question-card {
+  background: #f9f9ff;
+  border: 1px solid #e2e8f0;
+  border-radius: 20px;
+  padding: 15px;
+  margin-bottom: 15px;
+  width: 100%;
+}
+
+.edit-question-card input {
+  width: 100%;
+  padding: 8px 12px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 14px;
+  font-size: 0.9rem;
+}
+
+.remove-question-btn {
+  background: #e74c3c;
+  color: white;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  font-weight: bold;
+  transition: 0.2s;
+}
+
+.remove-question-btn:hover {
+  background: #c0392b;
+}
+
+.add-question-btn-edit {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 40px;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  width: 100%;
+  margin: 10px 0 20px;
+  transition: 0.2s;
+}
+
+.add-question-btn-edit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.edit-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  margin-top: 10px;
+}
+
+.save-edit-btn, .cancel-edit-btn {
+  padding: 8px 20px;
+  border-radius: 40px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.save-edit-btn {
+  background: linear-gradient(135deg, #10b068, #236b3e);
+  color: white;
+}
+
+
+
+.cancel-edit-btn {
+  background: #95a5a6;
+  color: white;
+}
+
+.cancel-edit-btn:hover {
+  background: #7f8c8d;
+}
+
+@media (max-width: 600px) {
+  .modal-container {
+    width: 95%;
+    padding: 15px;
+  }
+  .edit-actions {
+    flex-direction: column;
+  }
+  .save-edit-btn, .cancel-edit-btn {
+    width: 100%;
+    text-align: center;
   }
 }

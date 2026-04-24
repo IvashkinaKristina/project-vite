@@ -40,14 +40,12 @@ export default function NavMenu() {
 
   return (
     <nav className="side-nav">
-      <div className="user-info-nav" style={{ padding: '20px 10px', color: 'white' }}>
-        {user && <span>{user.name} ({user.role === 'teacher' ? 'Преподаватель' : 'Студент'})</span>}
-      </div>
+      
       <button
         className={`nav-button ${activeTab === "cabinet" ? "active" : ""}`}
         onClick={() => handleTabChange("cabinet")}
       >
-        ЛК
+        Личный кабинет
       </button>
       <button
         className={`nav-button ${activeTab === "lectures" ? "active" : ""}`}

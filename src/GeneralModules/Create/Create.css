@@ -1,6 +1,7 @@
-h2{
+h2 {
   font-size: 2rem;
 }
+
 .create-container {
   flex: 1;
   padding: 1.25rem;
@@ -9,11 +10,7 @@ h2{
   display: flex;
   flex-direction: column;
   align-items: center;
-   margin-left: 12rem;
-}
-
-.Heading {
-  color: black;
+  margin-left: 12rem;
 }
 
 .SpaceForCreate {
@@ -22,114 +19,279 @@ h2{
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-  background-color: #463783;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   width: 95%;
-  padding: 1.25rem;
-  border-radius: 1.25rem;
-  
+  max-width: 80rem;
+  padding: 1.5rem;
+  border-radius: 1.5rem;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
 }
 
 .video-drop-area {
   width: 100%;
   max-width: 60rem;
   height: 27rem;
-  padding: 0;
-  border: none;
-  border-radius: 1.25rem;
-  background-color: #D9D9D9;
+  border-radius: 1.5rem;
+  background-color: rgba(255, 255, 255, 0.427);
   cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #666;
+  color: white;
   font-size: 1.2rem;
-  overflow: hidden; /* Чтобы видео не выходило за края формы */
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.video-drop-area:hover {
+  border-color: white;
+  background-color: rgba(255, 255, 255, 0.2);
+  transform: scale(1.01);
 }
 
 .video-preview {
   width: 100%;
   height: 100%;
-  border-radius: 1rem;
-  object-fit: cover;
+  object-fit: contain;
   background-color: #000;
-}
-.InputCreate {
-  margin: 1rem;
-  width: 60rem;
-  height: 3rem;
   border-radius: 1rem;
-  background-color: rgb(255, 255, 255);
+}
+
+.InputCreate {
+  margin: 1rem 0;
+  width: 100%;
+  max-width: 40rem;
+  height: 3rem;
+  border-radius: 2rem;
+  background-color: white;
   font-size: 1rem;
+  padding: 0 1.5rem;
+  border: none;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: 0.2s;
 }
 
-.ButtonNewQuestion
-{
-width: 30rem;
-border-radius: 1rem;
-margin: 1rem;
+.InputCreate:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.5);
 }
 
+/* Кнопки — белые, с фиолетовым текстом */
+.ButtonNewQuestion,
+.UploadButton {
+  background: white;
+  color: #463783;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: 'Segoe UI', 'Roboto', 'Arial', sans-serif;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin: 0.5rem;
+}
+
+.ButtonNewQuestion {
+  width: 18rem;
+}
 
 .UploadButton {
-  color: black;
-  background-color: white;
+  width: 12rem;
+}
+
+.ButtonNewQuestion:hover,
+.UploadButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+  background: #f9f5ff;
+  color: #2c1d55;
+}
+
+.ButtonNewQuestion:active,
+.UploadButton:active {
+  transform: translateY(1px);
+}
+
+/* Модальное окно и другие стили (оставляем как было в предыдущем ответе) */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  z-index: 999;
+}
+
+.modal-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 1.5rem;
+  border-radius: 1.5rem;
+  box-shadow: 0 20px 35px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  width: 90%;
+  max-width: 600px;
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translate(-50%, -48%); }
+  to { opacity: 1; transform: translate(-50%, -50%); }
+}
+
+.modal-container h3 {
+  margin: 0 0 1rem;
+  text-align: center;
+  color: #2c1d55;
+  font-size: 1.5rem;
+}
+
+.questions-scroll {
+  overflow-y: auto;
+  flex-grow: 1;
+  margin-bottom: 1rem;
+  padding-right: 0.5rem;
+}
+
+.question-card {
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  border: 1px solid #e0e0e0;
   border-radius: 1rem;
-  width: 15rem;
+  background-color: #f9f9ff;
+  transition: box-shadow 0.2s;
 }
 
-.button-container {
-  display: flex;
-  justify-content: space-around;
-  width: 100%;
+.question-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
-.icon-button {
-  background-color: #fff;
-  border: none;
-  width: 4rem; 
-  height: 3rem; 
+.question-header {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  cursor: pointer;
-  margin: 3rem;
+  margin-bottom: 0.8rem;
+  font-weight: bold;
+  color: #463783;
 }
 
-.icon-button img {
-  max-width: 2.5rem;
-  max-height: 2.5rem;
+.delete-question-btn {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #999;
+  transition: 0.2s;
+}
+
+.delete-question-btn:hover {
+  color: #e74c3c;
+}
+
+.question-field {
+  margin-bottom: 0.8rem;
+}
+
+.question-field input {
+  width: 100%;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 0.6rem;
+  font-size: 0.9rem;
+  transition: 0.2s;
+  box-sizing: border-box;
+}
+
+.question-field input:focus {
+  border-color: #667eea;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.2);
+}
+
+.sub-label {
+  font-size: 0.8rem;
+  font-weight: bold;
+  color: #463783;
+  margin-bottom: 0.3rem;
+  margin-left: 0.2rem;
+}
+
+.hint-note {
+  font-size: 0.7rem;
+  color: #999;
+  margin-top: 0.2rem;
+  font-style: italic;
+}
+
+.add-question-btn {
+  background: transparent;
+  border: 2px solid #463783;
+  padding: 0.6rem;
+  border-radius: 2rem;
+  color: #463783;
+  font-weight: bold;
+  cursor: pointer;
+  width: 100%;
+  margin-bottom: 1rem;
+  transition: 0.2s;
+}
+
+.add-question-btn:hover {
+  background: #463783;
+  color: white;
+}
+
+.close-modal-btn {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  border: none;
+  padding: 0.7rem;
+  border-radius: 2rem;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  width: 100%;
 }
 
 @media (max-width: 768px) {
   .create-container {
     margin-left: 0;
-    padding: 10px;
+    padding: 0.5rem;
   }
   .SpaceForCreate {
     width: 100%;
-    padding: 10px;
+    padding: 1rem;
   }
   .video-drop-area {
     height: auto;
     min-height: 200px;
   }
-  .InputCreate {
-    width: 100%;
-  }
   .ButtonNewQuestion, .UploadButton {
-    width: 100%;
+    width: 90%;
   }
-  .button-container {
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px;
+  .modal-container {
+    width: 95%;
+    padding: 1rem;
   }
-  .icon-button {
-    margin: 5px;
+  .question-card {
+    padding: 0.8rem;
   }
 }
+
 @media (max-width: 480px) {
   .video-drop-area {
     min-height: 150px;
+  }
+  .ButtonNewQuestion, .UploadButton {
+    width: 100%;
   }
 }

@@ -25,47 +25,72 @@
   margin-left: 2.5rem; /* Добавили отступ слева */
 }
 
+/* Новая кнопка в стиле авторизации (градиент) */
 .button-account {
-  background-color: #e0e0e0;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
   border: none;
   padding: 0.625rem 0.9375rem;
   border-radius: 1.25rem;
   cursor: pointer;
   margin-bottom: 1.25rem;
   align-self: flex-start;
-  margin-left: 8.125rem; /* Добавили отступ слева */
+  margin-left: 8.125rem;
+  font-weight: 600;
+  transition: transform 0.1s, box-shadow 0.2s;
+}
+
+.button-account:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.2);
+}
+
+.button-account:active {
+  transform: translateY(0);
 }
 
 .user-info-details {
   display: flex;
   flex-direction: column;
   margin-top: 1.25rem;
-}
-
-.info-background {
-  background-color: #e0e0e0; /* Овальный серый фон */
-  border-radius: 1.25rem;
-  padding: 0.2rem 1rem; /* Внутренние отступы */
-  display: inline-flex; /* Чтобы элементы растягивались по содержимому */
-  justify-content: center;
-  align-items: center;
-  width: fit-content; /* Ширина под текст */
-  min-width: 12.5rem; /* Минимальная ширина (при необходимости) */
-  text-align: center;
+  background:linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 1.5rem;
+  padding: 1.5rem;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+  width: 100%;
+  max-width: 40rem;
 }
 
 .info-row {
   display: flex;
-  justify-content: space-between; /* Распределяем пространство между label и значением */
-  margin-bottom: 0.625rem;
-  margin-top: 1rem;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  background: white;
+  border-radius: 1rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
 .info-label {
-  font-weight: bold; /* Сделаем надписи полужирными */
-  margin-right: 0.5rem; /* Небольшой отступ между label и значением */
+  width: 3rem;
+  font-weight: 700;
+  font-family: 'Segoe UI', 'Roboto', 'Arial', sans-serif;
+  color: #2c3e66;             
+  letter-spacing: 0.5px;
+  padding-left: 3rem;
 }
 
+.info-background {
+  padding: 0.4rem 1rem;
+  border-radius: 2rem;
+  color: #1e293b;
+  font-weight: 500;
+  flex: 1;
+  margin: 0 0.5rem;
+  word-break: break-word;
+  text-align: left;          /* выравнивание по центру */
+}
+/* Адаптивность (оставляем как у вас) */
 @media (max-width: 768px) {
   .container-all {
     margin-left: 0;
@@ -87,14 +112,22 @@
     align-self: center;
   }
   .user-info-details {
-    align-items: center;
+    align-items: stretch;
+    max-width: 100%;
+    padding: 1rem;
   }
   .info-row {
     flex-direction: column;
-    align-items: center;
+    align-items: stretch;
+  }
+  .info-label {
+    width: auto;
+    margin-bottom: 0.25rem;
+    padding-left: 0;
     text-align: center;
   }
   .info-background {
-    margin-top: 5px;
+    text-align: center;
+    margin: 0;
   }
 }

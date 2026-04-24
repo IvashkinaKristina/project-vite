@@ -16,8 +16,6 @@ export default function Create() {
   const [showForm, setShowForm] = useState(false);
   const [title, setTitle] = useState("");
   const [questions, setQuestions] = useState([
-    { time: "", text: "", answer: "", hint: "" },
-    { time: "", text: "", answer: "", hint: "" },
     { time: "", text: "", answer: "", hint: "" }
   ]);
 
@@ -106,7 +104,6 @@ export default function Create() {
             onDrop={handleDrop}
             onDragOver={handleDragOver}
             onClick={() => { if (!videoPreview) handleButtonClick(); }}
-            style={{ cursor: videoPreview ? 'default' : 'pointer' }}
           >
             {videoPreview ? (
               <video controls className="video-preview">
@@ -121,7 +118,7 @@ export default function Create() {
           <input
             className="InputCreate"
             type="text"
-            placeholder="Добавить название лекции"
+            placeholder="Добавьте название лекции"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
           />
@@ -132,71 +129,35 @@ export default function Create() {
 
           {showForm && (
             <>
-              <div
-                style={{
-                  position: 'fixed',
-                  top: 0,
-                  left: 0,
-                  right: 0,
-                  bottom: 0,
-                  backgroundColor: 'rgba(0, 0, 0, 0.5)',
-                  zIndex: 999
-                }}
-                onClick={() => setShowForm(false)}
-              />
-              <div style={{
-                position: 'fixed',
-                top: '50%',
-                left: '50%',
-                transform: 'translate(-50%, -50%)',
-                backgroundColor: 'white',
-                padding: '30px',
-                borderRadius: '12px',
-                boxShadow: '0 10px 30px rgba(0, 0, 0, 0.3)',
-                zIndex: 1000,
-                minWidth: '400px',
-                maxWidth: '500px',
-                maxHeight: '80vh',
-                display: 'flex',
-                flexDirection: 'column'
-              }}>
-                <h3 style={{ margin: '0 0 20px 0', fontSize: '24px', color: '#000000ff', textAlign: 'center' }}>
-                  Форма создания вопросов
-                </h3>
-
-                <div style={{ overflowY: 'auto', flexGrow: 1, marginBottom: '20px', paddingRight: '10px' }}>
+              <div className="modal-overlay" onClick={() => setShowForm(false)} />
+              <div className="modal-container">
+                <h3>Форма создания вопросов</h3>
+                <div className="questions-scroll">
                   {questions.map((question, index) => (
-                    <div key={index} style={{
-                      marginBottom: '20px',
-                      padding: '15px',
-                      border: '1px solid #e0e0e0',
-                      borderRadius: '8px',
-                      backgroundColor: '#f9f9f9'
-                    }}>
-                      <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px' }}>
-                        <div style={{ fontWeight: 'bold', color: '#463783' }}>Вопрос {index + 1}</div>
+                    <div key={index} className="question-card">
+                      <div className="question-header">
+                        <span>Вопрос {index + 1}</span>
                         {questions.length > 1 && (
                           <button
                             type="button"
+                            className="delete-question-btn"
                             onClick={() => {
                               const newQuestions = [...questions];
                               newQuestions.splice(index, 1);
                               setQuestions(newQuestions);
                             }}
-                            style={{ background: 'none', border: 'none', fontSize: '20px', cursor: 'pointer' }}
                           >
                             ×
                           </button>
                         )}
                       </div>
 
-                      <div style={{ marginBottom: '10px' }}>
+                      <div className="question-field">
                         <input
                           type="number"
                           step="0.1"
                           value={question.time}
                           placeholder="Время в секундах (например, 12.5)"
-                          style={{ width: '100%', padding: '8px', border: '1px solid #463783', borderRadius: '4px' }}
                           onChange={(e) => {
                             const newQuestions = [...questions];
                             newQuestions[index].time = e.target.value;
@@ -205,12 +166,11 @@ export default function Create() {
                         />
                       </div>
 
-                      <div style={{ marginBottom: '12px' }}>
+                      <div className="question-field">
                         <input
                           type="text"
                           value={question.text}
                           placeholder="Введите вопрос"
-                          style={{ width: '100%', padding: '12px', border: '2px solid #463783', borderRadius: '6px' }}
                           onChange={(e) => {
                             const newQuestions = [...questions];
                             newQuestions[index].text = e.target.value;
@@ -219,13 +179,12 @@ export default function Create() {
                         />
                       </div>
 
-                      <div style={{ marginBottom: '10px' }}>
-                        <div style={{ fontSize: '14px', fontWeight: 'bold', color: '#463783' }}>Ответ:</div>
+                      <div className="question-field">
+                        <div className="sub-label">Ответ:</div>
                         <input
                           type="text"
                           value={question.answer}
                           placeholder="Введите правильный ответ"
-                          style={{ width: '100%', padding: '8px', border: '1px solid #463783', borderRadius: '4px' }}
                           onChange={(e) => {
                             const newQuestions = [...questions];
                             newQuestions[index].answer = e.target.value;
@@ -235,19 +194,18 @@ export default function Create() {
                       </div>
 
                       <div>
-                        <div style={{ fontSize: '14px', fontWeight: 'bold', color: '#463783' }}>Подсказка:</div>
+                        <div className="sub-label">Подсказка:</div>
                         <input
                           type="text"
                           value={question.hint}
                           placeholder="Введите подсказку"
-                          style={{ width: '100%', padding: '8px', border: '1px solid #463783', borderRadius: '4px' }}
                           onChange={(e) => {
                             const newQuestions = [...questions];
                             newQuestions[index].hint = e.target.value;
                             setQuestions(newQuestions);
                           }}
                         />
-                        <div style={{ fontSize: '12px', color: '#999' }}>Необязательное поле</div>
+                        <div className="hint-note">Необязательное поле</div>
                       </div>
                     </div>
                   ))}
@@ -255,18 +213,7 @@ export default function Create() {
 
                 <button
                   type="button"
-                  style={{
-                    padding: '10px 20px',
-                    border: '2px solid #463783',
-                    backgroundColor: 'transparent',
-                    color: '#463783',
-                    borderRadius: '6px',
-                    cursor: 'pointer',
-                    fontSize: '16px',
-                    width: '100%',
-                    marginBottom: '15px',
-                    fontWeight: 'bold'
-                  }}
+                  className="add-question-btn"
                   onClick={() => setQuestions([...questions, { time: "", text: "", answer: "", hint: "" }])}
                 >
                   Добавить новый вопрос
@@ -274,16 +221,7 @@ export default function Create() {
 
                 <button
                   type="button"
-                  style={{
-                    padding: '10px 20px',
-                    border: 'none',
-                    backgroundColor: '#463783',
-                    color: 'white',
-                    borderRadius: '6px',
-                    cursor: 'pointer',
-                    fontSize: '16px',
-                    width: '100%'
-                  }}
+                  className="close-modal-btn"
                   onClick={() => setShowForm(false)}
                 >
                   Закрыть

@@ -1,5 +1,5 @@
 .side-nav {
-    background-color:  #463783;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     width: 9.375rem;
     height: 100vh;
     padding-left: 1.25rem;
@@ -11,28 +11,32 @@
 
 }
 
-.nav-button {
+.nav-button, .nav-button-ex {
     background-color: white;
     border: none;
     margin-top: 1.4rem;
     padding: 1.25rem 1.25rem;
     border-radius: 0.625rem;
-    font-weight: bold;
-    cursor: pointer;
-    color: black;
+    font-weight: 600;
+  font-size: 0.95rem;
+  font-family: 'Segoe UI', 'Roboto', 'Arial', sans-serif;
+  color: #2d2f3a;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 
 }
-.nav-button-ex{
-    background-color: white;
-    border: none;
-    padding: 1.25rem 3rem;
-    border-radius: 10px;
-    font-weight: bold;
-    cursor: pointer;
-    color: black;
-    position: absolute;
-    bottom: 0;
-    margin-bottom: 1.4rem;
+.nav-button-ex {
+  margin-top: auto;
+  margin-bottom: 1.5rem;
+
+}
+
+.nav-button:hover, .nav-button-ex:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  background-color: #f9f5ff;
 }
 
 /* Адаптивность для планшетов и телефонов */
