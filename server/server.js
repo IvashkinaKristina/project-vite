@@ -56,8 +56,25 @@ db.serialize(() => {
       created_at DATETIME DEFAULT CURRENT_TIMESTAMP
     )
   `);
+
+  db.run(`
+    CREATE TABLE IF NOT EXISTS progress (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      student_id INTEGER NOT NULL,
+      lecture_id INTEGER NOT NULL,
+      question_time REAL NOT NULL,
+      answer TEXT,
+      correct BOOLEAN,
+      hint_used BOOLEAN DEFAULT 0,
+      attempts INTEGER DEFAULT 1,
+      created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+      FOREIGN KEY (student_id) REFERENCES users(id),
+      FOREIGN KEY (lecture_id) REFERENCES lectures(id)
+    )
+  `);
 });
 
+// Регистрация
 app.post('/api/register', async (req, res) => {
   const { email, password, name, role, group_name } = req.body;
   if (!email || !password || !name || !role) {
@@ -81,6 +98,7 @@ app.post('/api/register', async (req, res) => {
   }
 });
 
+// Вход
 app.post('/api/login', (req, res) => {
   const { email, password } = req.body;
   db.get('SELECT * FROM users WHERE email = ?', [email], async (err, user) => {
@@ -97,6 +115,7 @@ app.post('/api/login', (req, res) => {
   });
 });
 
+// Middleware аутентификации
 const authenticate = (req, res, next) => {
   const authHeader = req.headers.authorization;
   if (!authHeader) return res.status(401).json({ error: 'Нет токена' });
@@ -110,6 +129,7 @@ const authenticate = (req, res, next) => {
   }
 };
 
+// Создание лекции
 app.post('/api/lectures', authenticate, upload.single('video'), (req, res) => {
   if (req.user.role !== 'teacher') {
     return res.status(403).json({ error: 'Доступ только преподавателям' });
@@ -136,6 +156,7 @@ app.post('/api/lectures', authenticate, upload.single('video'), (req, res) => {
   stmt.finalize();
 });
 
+// Получение списка лекций
 app.get('/api/lectures', authenticate, (req, res) => {
   let sql = 'SELECT * FROM lectures';
   let params = [];
@@ -153,16 +174,13 @@ app.get('/api/lectures', authenticate, (req, res) => {
   });
 });
 
+// Получение одной лекции
 app.get('/api/lectures/:id', authenticate, (req, res) => {
   db.get('SELECT * FROM lectures WHERE id = ?', [req.params.id], (err, row) => {
     if (err) return res.status(500).json({ error: err.message });
     if (!row) return res.status(404).json({ error: 'Лекция не найдена' });
     res.json({ ...row, questions: JSON.parse(row.questions) });
   });
-});
-
-app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
 });
 
 // Редактирование лекции (PUT)
@@ -200,4 +218,72 @@ app.put('/api/lectures/:id', authenticate, upload.single('video'), (req, res) =>
     });
     stmt.finalize();
   });
+});
+
+// Сохранение ответа студента
+app.post('/api/progress', authenticate, (req, res) => {
+  if (req.user.role !== 'student') {
+    return res.status(403).json({ error: 'Только студенты могут сохранять ответы' });
+  }
+  const { lecture_id, question_time, answer, correct, hint_used, attempts } = req.body;
+  const stmt = db.prepare(`
+    INSERT INTO progress (student_id, lecture_id, question_time, answer, correct, hint_used, attempts)
+    VALUES (?, ?, ?, ?, ?, ?, ?)
+  `);
+  stmt.run(req.user.id, lecture_id, question_time, answer, correct ? 1 : 0, hint_used ? 1 : 0, attempts, function(err) {
+    if (err) return res.status(500).json({ error: err.message });
+    res.json({ id: this.lastID });
+  });
+  stmt.finalize();
+});
+
+// Получение статистики по лекции для преподавателя
+app.get('/api/statistics/:lectureId', authenticate, (req, res) => {
+  if (req.user.role !== 'teacher') {
+    return res.status(403).json({ error: 'Доступ только преподавателям' });
+  }
+  const lectureId = req.params.lectureId;
+  db.get('SELECT questions FROM lectures WHERE id = ?', [lectureId], (err, lecture) => {
+    if (err) return res.status(500).json({ error: err.message });
+    if (!lecture) return res.status(404).json({ error: 'Лекция не найдена' });
+    const questions = JSON.parse(lecture.questions);
+    db.all(`
+      SELECT DISTINCT u.id, u.name, p.question_time, p.correct, p.hint_used
+      FROM progress p
+      JOIN users u ON u.id = p.student_id
+      WHERE p.lecture_id = ?
+      ORDER BY u.id, p.question_time
+    `, [lectureId], (err, rows) => {
+      if (err) return res.status(500).json({ error: err.message });
+      const studentsMap = new Map();
+      rows.forEach(row => {
+        if (!studentsMap.has(row.id)) {
+          studentsMap.set(row.id, { id: row.id, name: row.name, answers: {} });
+        }
+        const student = studentsMap.get(row.id);
+        student.answers[row.question_time] = { correct: row.correct === 1, hintUsed: row.hint_used === 1 };
+      });
+      const result = {
+        questions: questions.map(q => ({ time: q.time, text: q.text })),
+        students: Array.from(studentsMap.values()).map(s => ({
+          id: s.id,
+          name: s.name,
+          answers: questions.map(q => {
+            const ans = s.answers[q.time];
+            return {
+              correct: ans ? ans.correct : false,
+              hintUsed: ans ? ans.hintUsed : false,
+              answered: !!ans
+            };
+          })
+        }))
+      };
+      res.json(result);
+    });
+  });
+});
+
+// Запуск сервера
+app.listen(PORT, () => {
+  console.log(`Server running on http://localhost:${PORT}`);
 });

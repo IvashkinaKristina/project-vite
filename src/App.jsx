@@ -6,6 +6,7 @@ import Register from './pages/Auth/Register';
 import Lectures from './GeneralModules/Lectures/Lectures';
 import Create from './GeneralModules/Create/Create';
 import PersonalAccount from './GeneralModules/PersonalAccount/PersonalAccount';
+import Statistics from './GeneralModules/Statistics/Statistics';
 
 const PrivateRoute = ({ children, allowedRoles }) => {
   const { user, loading } = useAuth();
@@ -41,6 +42,11 @@ function App() {
         <Route path="/personal-account" element={
           <PrivateRoute allowedRoles={['student', 'teacher']}>
             <PersonalAccount />
+          </PrivateRoute>
+        } />
+        <Route path="/statistics" element={
+          <PrivateRoute allowedRoles={['teacher']}>
+            <Statistics />
           </PrivateRoute>
         } />
       </Routes>

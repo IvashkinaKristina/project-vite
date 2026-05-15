@@ -136,6 +136,7 @@ export default function Lectures() {
               videoUrl={`http://localhost:5000${selectedLecture.video_url}`}
               questions={selectedLecture.questions}
               onBack={() => setSelectedLecture(null)}
+              lectureId={selectedLecture.id}
             />
           )}
         </div>

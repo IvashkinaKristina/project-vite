@@ -1,7 +1,8 @@
 import React, { useState, useRef, useEffect } from "react";
 import "./VideoSpace.css";
+import { saveAnswer } from '../../services/api';
 
-const VideoSpace = ({ videoUrl, questions, onBack }) => {
+const VideoSpace = ({ videoUrl, questions, onBack, lectureId }) => {
   const videoRef = useRef(null);
   const [currentQuestion, setCurrentQuestion] = useState(null);
   const [answeredQuestions, setAnsweredQuestions] = useState([]);
@@ -88,9 +89,23 @@ const VideoSpace = ({ videoUrl, questions, onBack }) => {
 
   const handleOptionSelect = (option) => setSelectedOption(option);
 
-  const handleMultipleChoiceSubmit = () => {
+  const handleMultipleChoiceSubmit = async () => {
     if (selectedOption && currentQuestion) {
       if (selectedOption === currentQuestion.correctAnswer) {
+        // Сохраняем ответ
+        try {
+          await saveAnswer({
+            lecture_id: lectureId,
+            question_time: currentQuestion.time,
+            answer: selectedOption,
+            correct: true,
+            hint_used: showHint,
+            attempts: wrongAttempts + 1
+          });
+        } catch (err) {
+          console.error('Ошибка сохранения ответа:', err);
+        }
+
         setShowCorrect(true);
         setTimeout(() => {
           setAnsweredQuestions(prev => [...prev, currentQuestion.time]);
@@ -118,9 +133,23 @@ const VideoSpace = ({ videoUrl, questions, onBack }) => {
     }
   };
 
-  const handleAnswerSubmit = (e) => {
+  const handleAnswerSubmit = async (e) => {
     if (e.key === 'Enter' && currentQuestion) {
       if (userAnswer.trim() === currentQuestion.correctAnswer) {
+        // Сохраняем ответ
+        try {
+          await saveAnswer({
+            lecture_id: lectureId,
+            question_time: currentQuestion.time,
+            answer: userAnswer.trim(),
+            correct: true,
+            hint_used: showHint,
+            attempts: wrongAttempts + 1
+          });
+        } catch (err) {
+          console.error('Ошибка сохранения ответа:', err);
+        }
+
         setShowCorrect(true);
         setTimeout(() => {
           setAnsweredQuestions(prev => [...prev, currentQuestion.time]);

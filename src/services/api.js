@@ -62,3 +62,13 @@ export const updateLecture = async (id, formData) => {
   });
   return response.data;
 };
+
+export const saveAnswer = async (data) => {
+  const response = await api.post('/progress', data);
+  return response.data;
+};
+
+export const getStatistics = async (lectureId) => {
+  const response = await api.get(`/statistics/${lectureId}`);
+  return response.data;
+};

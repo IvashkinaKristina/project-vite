@@ -12,6 +12,7 @@ export default function NavMenu() {
     if (location.pathname === "/personal-account") return "cabinet";
     if (location.pathname === "/lectures" || location.pathname === "/") return "lectures";
     if (location.pathname === "/create") return "create";
+    if (location.pathname === "/statistics") return "statistics";
     return "lectures";
   };
 
@@ -28,6 +29,9 @@ export default function NavMenu() {
       case "create":
         navigate("/create");
         break;
+      case "statistics":
+        navigate("/statistics");
+        break;
       default:
         navigate("/lectures");
     }
@@ -40,7 +44,6 @@ export default function NavMenu() {
 
   return (
     <nav className="side-nav">
-      
       <button
         className={`nav-button ${activeTab === "cabinet" ? "active" : ""}`}
         onClick={() => handleTabChange("cabinet")}
@@ -53,14 +56,24 @@ export default function NavMenu() {
       >
         Лекции
       </button>
+
       {user?.role === 'teacher' && (
-        <button
-          className={`nav-button ${activeTab === "create" ? "active" : ""}`}
-          onClick={() => handleTabChange("create")}
-        >
-          Редактор лекций
-        </button>
+        <>
+          <button
+            className={`nav-button ${activeTab === "create" ? "active" : ""}`}
+            onClick={() => handleTabChange("create")}
+          >
+            Редактор лекций
+          </button>
+          <button
+            className={`nav-button ${activeTab === "statistics" ? "active" : ""}`}
+            onClick={() => handleTabChange("statistics")}
+          >
+            Статистика
+          </button>
+        </>
       )}
+
       <button className="nav-button-ex" onClick={handleLogout}>
         Выход
       </button>
